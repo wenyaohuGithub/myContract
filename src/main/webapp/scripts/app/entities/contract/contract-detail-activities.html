@@ -1,0 +1,24 @@
+<div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>user</th>
+                <th>Action</th>
+                <th>process</th>
+                <th>Datetime</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="contract_history in contract_histories">
+                <td>{{contract_history.user.login}}</td>
+                <td>{{contract_history.action}}</td>
+                <td>{{contract_history.taskProcessName}}</td>
+                <td>{{contract_history.action_datetime}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

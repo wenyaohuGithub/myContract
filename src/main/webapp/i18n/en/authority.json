@@ -1,0 +1,19 @@
+{
+    "mycontractApp": {
+        "authority" : {
+            "home": {
+                "title": "Authority",
+                "createLabel": "Create a new Authority",
+                "createOrEditLabel": "Create or edit a Authority"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Authority {{ name }}?"
+            },
+            "detail": {
+                "title": "RoAuthorityle"
+            },
+            "name": "Name",
+            "description": "Description"
+        }
+    }
+}

@@ -1,0 +1,55 @@
+
+<div>
+    <h2> {{account.name}}</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.account.name">Name</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{account.name}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.account.description">Description</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{account.description}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.account.active">Active</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{account.active}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.account.configuration">Process Configuration</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{account.processConfiguration}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="account"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql"/>
+    <property name="autoIncrement" value="false" dbms="oracle"/>
+    <!--
+        Added the entity ContractHistory.
+    -->
+    <changeSet id="20161216021716" author="whu">
+        <createTable tableName="MC_CONTRACT_HISTORY">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="note" type="varchar(255)"/>
+            <column name="action" type="varchar(255)"/>
+            <column name="action_datetime" type="timestamp"/>
+            <column name="contract_id" type="bigint"/>
+            <column name="user_id" type="bigint"/>
+            <column name="task_id" type="bigint"/>
+        </createTable>
+        <dropDefaultValue tableName="MC_CONTRACT_HISTORY" columnName="action_datetime" columnDataType="datetime"/>
+
+
+        <addForeignKeyConstraint baseColumnNames="contract_id"
+                                 baseTableName="MC_CONTRACT_HISTORY"
+                                 constraintName="fk_contract_history_contract_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="MC_CONTRACT"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="MC_CONTRACT_HISTORY"
+                                 constraintName="fk_contract_history_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="MC_USER"/>
+
+        <addForeignKeyConstraint baseColumnNames="task_id"
+                                 baseTableName="MC_CONTRACT_HISTORY"
+                                 constraintName="fk_contract_history_task_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="MC_TASK"/>
+
+    </changeSet>
+</databaseChangeLog>

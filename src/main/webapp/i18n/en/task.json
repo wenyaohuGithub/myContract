@@ -1,0 +1,24 @@
+{
+    "mycontractApp": {
+        "task" : {
+            "home": {
+                "title": "Tasks",
+                "createLabel": "Create a new Task",
+                "createOrEditLabel": "Create or edit a Task"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Task {{ id }}?"
+            },
+            "detail": {
+                "title": "Task"
+            },
+            "sequence": "Sequence",
+            "contract": "Contract",
+            "process": "Process",
+            "department": "Department",
+            "user": "user",
+            "assignee": "Assignee",
+            "result": "Result"
+        }
+    }
+}

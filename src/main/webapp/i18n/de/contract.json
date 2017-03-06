@@ -1,0 +1,41 @@
+{
+    "mycontractApp": {
+        "contract" : {
+            "home": {
+                "title": "Contracts",
+                "createLabel": "Create a new Contract",
+                "createOrEditLabel": "Create or edit a Contract"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Contract {{ id }}?"
+            },
+            "detail": {
+                "title": "Contract"
+            },
+            "name": "Name",
+            "review_identifier": "Review_identifier",
+            "contract_identifier": "Contract_identifier",
+            "contracting_method": "ContractingMethod",
+            "amount": "Amount",
+            "amount_written": "Amount_written",
+            "currency": "Currency",
+            "amount_current_year": "Amount_current_year",
+            "submit_date": "Submit_date",
+            "start_date": "Start_date",
+            "end_date": "End_date",
+            "expire_date": "Expire_date",
+            "is_multi_year": "Is_multi_year",
+            "status": "Status",
+            "state": "State",
+            "approve_date": "Approve_date",
+            "sign_date": "Sign_date",
+            "archive_date": "Archive_date",
+            "contract_party": "contract_party",
+            "executing_department": "executing_department",
+            "category": "category",
+            "fund_source": "fund_source",
+            "contract_sample": "contract_sample",
+            "related_department": "related_department"
+        }
+    }
+}

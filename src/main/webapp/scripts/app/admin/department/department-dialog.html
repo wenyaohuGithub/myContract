@@ -1,0 +1,56 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myDepartmentLabel" translate="mycontractApp.department.home.createOrEditLabel">Create or edit a Department</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label translate="global.field.id">ID</label>
+            <input type="text" class="form-control" name="id"
+                    ng-model="department.id" readonly>
+        </div>
+
+        <div class="form-group">
+            <label translate="mycontractApp.department.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="department.name">
+
+            <div ng-show="editForm.name.$invalid">
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.department.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                    ng-model="department.description">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.department.note" for="field_note">Note</label>
+            <input type="text" class="form-control" name="note" id="field_note"
+                    ng-model="department.note">
+
+        </div>
+
+        <div class="form-group">
+            <label translate="mycontractApp.department.employee" for="field_employee">employee</label>
+            <select class="form-control" id="field_employee" name="employee" ng-model="department.employee.id" ng-options="person.id as person.first_name for person in persons">
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.department.parent_department" for="field_parent_department">parent_department</label>
+            <select class="form-control" id="field_parent_department" name="parent_department" ng-model="department.parent_department.id" ng-options="department.id as department.name for department in departments">
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

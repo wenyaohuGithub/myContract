@@ -1,0 +1,24 @@
+name;description
+ROLE_ADMIN;System Administrator
+ROLE_USER;Regular User
+ROLE_DEPT_HEAD;Department head
+ROLE_DIV_HEAD;Division head
+ROLE_BRANCH_MANAGER;Branch manager
+ROLE_EXECUTIVE;Executive
+ROLE_CONTRACT_SEAL_MGR;Contract seal manager
+ROLE_FINANCE_DEPT_HEAD;Finance department head
+ROLE_LEGAL_DEPT_HEAD;Legal department head
+ROLE_TECH_DEPT_HEAD;Technology department head
+ROLE_FINANCE_DEPT_STAFF;Finance department staff
+ROLE_LEGAL_DEPT_STAFF;Legal department staff
+ROLE_TECH_DEPT_STAFF;Technology department staff
+ROLE_DEPT_CONTRACT_MANAGER;Department contract manager
+ROLE_DEPT_CONTRACT_COMANAGER;Department contract co-manager
+ROLE_DEPT_CONTRACT_STAFF;Department contract management staff
+ROLE_DIV_CONTRACT_MANAGER;Division contract manager
+ROLE_DIV_CONTRACT_COMANAGER;Division contract co-manager
+ROLE_DIV_CONTRACT_STAFF;Division contract management staff
+
+
+
+

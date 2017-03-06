@@ -1,0 +1,271 @@
+<div>
+    <h2><span translate="mycontractApp.contract.detail.title">Contract</span> {{contract.id}} ---- {{contract.status}}</h2>
+    <div class="panel panel-default" ng-show="contract.status != 'Archived'">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-1">
+                    <div ng-switch="contract.status == 'Drafting'">
+                        <div ng-switch-when="true">
+                            <button type="submit" ui-sref="contract.edit({id:contract.id})" class="btn btn-info">
+                                <span>Edit</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <button type="submit" ui-sref="contract" class="btn btn-info">
+                        <span>Assign</span>
+                    </button>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" ui-sref="contract" class="btn btn-info">
+                        <span>Comment</span>
+                    </button>
+                </div>
+                <div class="col-md-5">
+                    <div ng-switch="contract.status == 'Drafting'">
+                        <div ng-switch-when="true">
+                            <button type="submit" ng-click="submitToNextProcess()" class="btn btn-success">
+                                <span>Complete and submit to: {{contract.nextTask.processName}}</span>
+                            </button>
+                        </div>
+                        <div ng-switch-when="false">
+                            <button type="submit" ng-click="approveContractRequest()" class="btn btn-success" ng-show="contract.approvable">
+                                <span>Approve</span>
+                            </button>
+                            <button type="submit" ng-click="rejectContractRequest()" class="btn btn-danger" ng-show="contract.rejectable">
+                                <span>Reject</span>
+                            </button>
+                            <button type="submit" ng-click="submitToNextProcess()" class="btn btn-success" ng-show="!contract.rejectable && contract.nextTask">
+                                <span>Complete and submit to: {{contract.nextTask.processName}}</span>
+                            </button>
+                            <button type="submit" ng-click="submitToNextProcess()" class="btn btn-success" ng-show="!contract.nextTask && contract.status != 'Archived'">
+                                <span>Archive</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="submitToNextProcess_Confirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="submitToNextProcessForm" ng-submit="confirmToNextProcess()">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="mycontractApp.contract.submitToNextProcess.title">Submit to next process</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="mycontractApp.contract.submitToNextProcess.question" translate-values="{nextProcess: '{{contract.nextTask.processName}}'}">Are you sure you want to submit to next process?</p>
+                        <label>Please enter your note</label>
+                        <textarea id="commentArea" rows="4" cols="70" required ng-model="note" name="comment" focus-me="true" ng-maxlength="255"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="submitToNextProcessForm.$invalid" class="btn btn-success">
+                            <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;<span translate="entity.action.ok">OK</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="rejectRequest_Confirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="rejectProcessForm" ng-submit="confirmToReject()">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="mycontractApp.contract.rejectProcess.title">Reject the current contract</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="mycontractApp.contract.rejectProcess.question">Are you sure you want to send back to draft?</p>
+                        <label>Please enter your note</label>
+                        <textarea id="rejectNote" rows="4" cols="70" required ng-model="note" name="comment" focus-me="true" ng-maxlength="255"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="rejectProcessForm.$invalid" class="btn btn-success">
+                            <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;<span translate="entity.action.ok">OK</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="approveRequest_Confirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="approveProcessForm" ng-submit="confirmToApprove()">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="mycontractApp.contract.approveProcess.title">Approve the current contract</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="mycontractApp.contract.approveProcess.question">Are you sure you want to approve current request?</p>
+                        <label>Please enter your note</label>
+                        <textarea id="approveNote" rows="4" cols="70" required ng-model="note" name="comment" focus-me="true" ng-maxlength="255"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="approveProcessForm.$invalid" class="btn btn-success">
+                            <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;<span translate="entity.action.ok">OK</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+    <div class="col-md-9">
+
+    <div class="table-responsive">
+        <table class="table">
+            <tbody style="display:block; overflow: auto;">
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract.name">Name</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract.name}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract.description">Description</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract.description}}">
+                    </td>
+                </tr>
+                <tr ng-if="$root.showElement('STANDARD,ADVANCED')">
+                    <td>
+                        <span translate="mycontractApp.contract.category">category</span>
+                    </td>
+                    <td><a ui-sref="category.detail({id:contract.category.id})">
+                        <input type="text" class="input-sm form-control" value="{{contract.category.name}}" readonly></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract.contract_party">Contract Party</span>
+                    </td>
+                    <td><a ui-sref="contract_party.detail({id:contract.contractParty.id})">
+                        <input type="text" class="input-sm form-control" value="{{contract.contractParty.name}}" readonly></a>
+                    </td>
+                    <!--
+                    <td>
+                        <span translate="mycontractApp.contract.status">Status</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract.status}}" readonly>
+                    </td>-->
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract.amount">Amount</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract.amount}}" readonly>
+                    </td>
+                    <td ng-if="$root.showElement('ADVANCED')">
+                        <span translate="mycontractApp.contract.currency">Currency</span>
+                    </td>
+                    <td ng-if="$root.showElement('ADVANCED')">
+                        <input type="text" class="input-sm form-control" value="{{contract.currency}}" readonly>
+                    </td>
+                </tr>
+                <tr ng-if="$root.showElement('ADVANCED')">
+                    <td>
+                        <span translate="mycontractApp.contract.amount_written">Amount_written</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract.amountWritten}}" readonly>
+                    </td>
+                    <td>
+                        <span translate="mycontractApp.contract.fund_source">fund_source</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract.fundSource.name}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <div id="content">
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="active"><a data-target="#info" data-toggle="tab">Detail Info</a></li>
+            <li ng-if="$root.showElement('STANDARD,ADVANCED')"><a data-target="#project" data-toggle="tab">Project Info</a></li>
+            <li><a data-target="#notes" data-toggle="tab">Notes</a></li>
+            <li><a data-target="#activities" data-toggle="tab">Activities</a></li>
+            <li><a data-target="#attachments" data-toggle="tab">Attachments</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="info"><div ui-view="info"></div></div>
+            <div class="tab-pane" id="project" ng-if="$root.showElement('STANDARD,ADVANCED')"><div ui-view="project"></div></div>
+            <div class="tab-pane" id="notes"><div ui-view="notes"></div></div>
+            <div class="tab-pane" id="activities"><div ui-view="activities"></div></div>
+            <div class="tab-pane" id="attachments"><div ui-view="attachments"></div></div>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="col-md-3">
+        <div style="height:400px; overflow:auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>People</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><h5>Administrator</h5></td></tr>
+                    <tr><td>{{contract.administrator.lastName}} {{contract.administrator.firstName}}</td></tr>
+                    <tr><td><h5>Author</h5></td></tr>
+                    <tr><td>{{contract.author.lastName}} {{contract.author.firstName}}</td></tr>
+                    <tr><td><h5>Assignee</h5></td></tr>
+                    <tr><td>{{contract.assignee.lastName}} {{contract.assignee.firstName}}</td></tr>
+                    <tr><td><h5>Administrative Department</h5></td></tr>
+                    <tr><td>{{contract.administrativeDepartment.name}}</td></tr>
+                    <tr><td><h5>Related Department</h5></td></tr>
+                    <tr ng-repeat = "dept in contract.relatedDepartments"><td>{{dept.name}}</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="height:200px; overflow:auto;">
+            <table>
+                <thead>
+                <tr>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr><td><h5>date created</h5></td></tr>
+                    <tr><td>{{contract.createdDate}}</td></tr>
+                    <tr><td><h5>last modified</h5></td></tr>
+                    <tr><td>{{contract.modifiedDate}}</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+{
+    "mycontractApp": {
+        "workflow" : {
+            "home": {
+                "title": "Workflows",
+                "createLabel": "Create a new Workflow",
+                "createOrEditLabel": "Create or edit a Workflow"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Workflow {{ id }}?"
+            },
+            "detail": {
+                "title": "Workflow"
+            },
+            "name": "Name",
+            "description": "Description",
+            "process": "process"
+        }
+    }
+}

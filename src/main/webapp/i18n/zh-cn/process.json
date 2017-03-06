@@ -1,0 +1,20 @@
+{
+    "mycontractApp": {
+        "process" : {
+            "home": {
+                "title": "Processs",
+                "createLabel": "Create a new Process",
+                "createOrEditLabel": "Create or edit a Process"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Process {{ id }}?"
+            },
+            "detail": {
+                "title": "Process"
+            },
+            "name": "Name",
+            "description": "Description",
+            "eligible_personnel": "eligible_personnel"
+        }
+    }
+}

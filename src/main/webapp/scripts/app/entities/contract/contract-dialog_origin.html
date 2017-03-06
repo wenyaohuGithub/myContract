@@ -1,0 +1,176 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myContractLabel" translate="mycontractApp.contract.home.createOrEditLabel">Create or edit a Contract</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label translate="mycontractApp.contract.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="contract.name">
+
+            <div ng-show="editForm.name.$invalid">
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.review_identifier" for="field_review_identifier">Review_identifier</label>
+            <input type="text" class="form-control" name="review_identifier" id="field_review_identifier"
+                    ng-model="contract.review_identifier">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.contract_identifier" for="field_contract_identifier">Contract_identifier</label>
+            <input type="text" class="form-control" name="contract_identifier" id="field_contract_identifier"
+                    ng-model="contract.contract_identifier">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.contracting_method" for="field_contracting_method">ContractingMethod</label>
+            <select class="form-control" name="contracting_method" ng-model="contract.contracting_method" id="field_contracting_method">
+               <option value="Bid">Bid</option>
+               <option value="Proposal">Proposal</option>
+               <option value="Exemption">Exemption</option>
+               <option value="Other">Other</option>
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.amount" for="field_amount">Amount</label>
+            <input type="number" class="form-control" name="amount" id="field_amount"
+                    ng-model="contract.amount">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.amount_written" for="field_amount_written">Amount_written</label>
+            <input type="text" class="form-control" name="amount_written" id="field_amount_written"
+                    ng-model="contract.amount_written">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.currency" for="field_currency">Currency</label>
+            <select class="form-control" name="currency" ng-model="contract.currency" id="field_currency">
+               <option value="ChineseYuan">ChineseYuan</option>
+               <option value="USDollar">USDollar</option>
+               <option value="JapaneseYen">JapaneseYen</option>
+               <option value="HKDollar">HKDollar</option>
+               <option value="EURO">EURO</option>
+               <option value="UKPound">UKPound</option>
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.amount_current_year" for="field_amount_current_year">Amount_current_year</label>
+            <input type="number" class="form-control" name="amount_current_year" id="field_amount_current_year"
+                    ng-model="contract.amount_current_year">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.submit_date" for="field_submit_date">Submit_date</label>
+            <input type="datetime-local" class="form-control" name="submit_date" id="field_submit_date"
+                    ng-model="contract.submit_date" ng-model-options="{timezone: 'UTC'}">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.start_date" for="field_start_date">Start_date</label>
+            <input type="datetime-local" class="form-control" name="start_date" id="field_start_date"
+                    ng-model="contract.start_date" ng-model-options="{timezone: 'UTC'}">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.end_date" for="field_end_date">End_date</label>
+            <input type="datetime-local" class="form-control" name="end_date" id="field_end_date"
+                    ng-model="contract.end_date" ng-model-options="{timezone: 'UTC'}">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.expire_date" for="field_expire_date">Expire_date</label>
+            <input type="datetime-local" class="form-control" name="expire_date" id="field_expire_date"
+                    ng-model="contract.expire_date" ng-model-options="{timezone: 'UTC'}">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.is_multi_year" for="field_is_multi_year">Is_multi_year</label>
+            <input type="checkbox" class="form-control" name="is_multi_year" id="field_is_multi_year"
+                    ng-model="contract.is_multi_year">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.status" for="field_status">Status</label>
+            <select class="form-control" name="status" ng-model="contract.status" id="field_status">
+               <option value="drafting">drafting</option>
+               <option value="reviewing">reviewing</option>
+               <option value="approved">approved</option>
+               <option value="signed">signed</option>
+               <option value="archived">archived</option>
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.state" for="field_state">State</label>
+            <select class="form-control" name="state" ng-model="contract.state" id="field_state">
+               <option value="drafting">drafting</option>
+               <option value="internal_division_review">internal_division_review</option>
+               <option value="related_division_review">related_division_review</option>
+               <option value="internal_department_review">internal_department_review</option>
+               <option value="related_department_review">related_department_review</option>
+               <option value="finance_department_review">finance_department_review</option>
+               <option value="legal_department_review">legal_department_review</option>
+               <option value="executive_review">executive_review</option>
+               <option value="contract_manager_review">contract_manager_review</option>
+               <option value="contract_sign">contract_sign</option>
+               <option value="contract_archive">contract_archive</option>
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.approve_date" for="field_approve_date">Approve_date</label>
+            <input type="datetime-local" class="form-control" name="approve_date" id="field_approve_date"
+                    ng-model="contract.approve_date" ng-model-options="{timezone: 'UTC'}">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.sign_date" for="field_sign_date">Sign_date</label>
+            <input type="datetime-local" class="form-control" name="sign_date" id="field_sign_date"
+                    ng-model="contract.sign_date" ng-model-options="{timezone: 'UTC'}">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.archive_date" for="field_archive_date">Archive_date</label>
+            <input type="datetime-local" class="form-control" name="archive_date" id="field_archive_date"
+                    ng-model="contract.archive_date" ng-model-options="{timezone: 'UTC'}">
+
+        </div>
+
+        <div class="form-group">
+            <label translate="mycontractApp.contract.executing_department" for="field_executing_department">executing_department</label>
+            <select class="form-control" id="field_executing_department" name="executing_department" ng-model="contract.executing_department.id" ng-options="department.id as department.name for department in departments">
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.category" for="field_category">category</label>
+            <select class="form-control" id="field_category" name="category" ng-model="contract.category.id" ng-options="category.id as category.name for category in categorys">
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.fund_source" for="field_fund_source">fund_source</label>
+            <select class="form-control" id="field_fund_source" name="fund_source" ng-model="contract.fund_source.id" ng-options="fund_source.id as fund_source.name for fund_source in fund_sources">
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract.contract_sample" for="field_contract_sample">contract_sample</label>
+            <select class="form-control" id="field_contract_sample" name="contract_sample" ng-model="contract.contract_sample.id" ng-options="contract_sample.id as contract_sample.name for contract_sample in contract_samples">
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

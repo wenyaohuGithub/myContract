@@ -1,0 +1,52 @@
+<div>
+
+    <h2 translate="mycontractApp.message.home.title">Messages</h2>
+    <div class="modal fade" id="deleteMessageConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(message.id)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="mycontractApp.message.delete.question" translate-values="{id: '{{message.id}}'}">Are you sure you want to delete this message?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="mycontractApp.message.sender">sender</th>
+                    <th translate="mycontractApp.message.subject">Subject</th>
+                    <th translate="mycontractApp.message.send_datetime">Send_datetime</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="message in messages">
+                    <td><a ui-sref="message.detail({id:message.id})"><span ng-class="strong">{{message.sender.login}}</span></a></td>
+                    <td>{{message.subject}}</td>
+                    <td>{{message.send_datetime}}</td>
+                    <td><button type="submit"
+                                ng-click="delete(message.id)"
+                                class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

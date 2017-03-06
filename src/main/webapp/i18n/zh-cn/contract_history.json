@@ -1,0 +1,23 @@
+{
+    "mycontractApp": {
+        "contract_history" : {
+            "home": {
+                "title": "Contract_historys",
+                "createLabel": "Create a new Contract_history",
+                "createOrEditLabel": "Create or edit a Contract_history"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Contract_history {{ id }}?"
+            },
+            "detail": {
+                "title": "Contract_history"
+            },
+            "note": "Note",
+            "action": "Action",
+            "action_datetime": "Action_datetime",
+            "contract": "contract",
+            "user": "user",
+            "process": "process"
+        }
+    }
+}

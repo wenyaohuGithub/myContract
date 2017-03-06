@@ -1,0 +1,68 @@
+{
+    "mycontractApp": {
+        "contract" : {
+            "home": {
+                "title": "Contracts",
+                "createLabel": "Create a new Contract",
+                "createOrEditLabel": "Create or edit a Contract",
+                "create": "Create a Contract"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Contract {{ id }}?"
+            },
+            "detail": {
+                "title": "Contract",
+                "project.name": "Project",
+                "project.manager": "Manager"
+            },
+            "messages":{
+                "validate": {
+                    "namerequired": "The name is required."
+                }
+            },
+            "submitToNextProcess":{
+                "title": "Submit to next process",
+                "question": "Are you sure you want to submit to next process {{nextProcess}}?"
+            },
+            "rejectProcess":{
+                "title": "Reject the current contract",
+                "question": "Are you sure you want to send back to draft?"
+            },
+            "approveProcess":{
+                "title": "Approve the current process",
+                "question": "Are you sure you want to approve current process?"
+            },
+            "statistics":{
+                "title": "Contracts Statistics"
+            },
+            "name": "Name",
+            "description": "Description",
+            "review_identifier": "Review identifier",
+            "contract_identifier": "Contract identifier",
+            "contracting_method": "ContractingMethod",
+            "amount": "Amount",
+            "amount_written": "Amount written",
+            "currency": "Currency",
+            "amount_current_year": "Amount current year",
+            "submit_date": "Submit Date",
+            "created_date": "Created Date",
+            "start_date": "Start date",
+            "end_date": "End date",
+            "expire_date": "Expire date",
+            "is_multi_year": "Is_multi_year",
+            "status": "Status",
+            "state": "State",
+            "approve_date": "Approve date",
+            "sign_date": "Sign date",
+            "archive_date": "Archive date",
+            "contract_party": "Contract Party",
+            "administrator": "Administrator",
+            "administrative_department": "Administrative Department",
+            "category": "category",
+            "fund_source": "fund source",
+            "contract_sample": "contract sample",
+            "related_department": "related department",
+            "project": "Project"
+        }
+    }
+}

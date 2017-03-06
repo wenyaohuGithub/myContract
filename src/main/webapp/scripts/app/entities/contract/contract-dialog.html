@@ -1,0 +1,163 @@
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myContractLabel" translate="mycontractApp.contract.home.createLabel">Create a Contract</h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="table-responsive">
+            <table class="table">
+                <tbody style="display:block; overflow: auto; height: 500px">
+                    <tr>
+                        <td class="col-sm-1"><label translate="mycontractApp.contract.name" for="field_name">Name</label></td>
+                        <td class="col-sm-12">
+                            <input type="text" class="form-control" name="name" id="field_name" required ng-model="contract.name">
+                            <div ng-show="editForm.name.$dirty && editForm.name.$invalid">
+                                <p class="help-block"
+                               ng-show="editForm.name.$error.required" translate="mycontractApp.contract.messages.validate.namerequired">
+                                Contract name is required.
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label translate="mycontractApp.contract.description" for="desc">Description</label></td>
+                        <td><input type="text" class="form-control" name="desc" id="desc" ng-model="contract.description"></td>
+                    </tr>
+                    <tr ng-if="$root.showElement('STANDARD,ADVANCED')">
+                        <td><label translate="mycontractApp.contract.category" for="category">Category</label></td>
+                        <td><select name="category" id="category" class="form-control" ng-model="contract.category" ng-change="categorySelected()" ng-controller="CategoryController" ng-options="category as category.name for category in categories">
+                            <option value="">Select A Category</option>
+                        </select></td>
+                    </tr>
+                    <tr ng-if="$root.showElement('STANDARD,ADVANCED')">
+                        <td><label translate="mycontractApp.contract.project" for="project">Project</label></td>
+                        <td><select name="project" id="project" class="form-control" ng-model="addedProject" ng-change="addProject(addedProject)" ng-controller="ProjectController" ng-options="project as project.name for project in projects">
+                            <option value="">Select A Project</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><label translate="mycontractApp.contract.contract_party" for="contractParty">contract party</label></td>
+                        <td><select name="contractParty" id="contractParty" class="form-control" required ng-model="contract.contractParty" ng-controller="Contract_partyController" ng-options="party as party.name for party in contract_parties">
+                            <option value="">Select A Contract Party</option>
+                        </select></td>
+                    </tr>
+
+                    <tr ng-if="$root.showElement('ADVANCED')" ng-show="nextProcesses.length > 1">
+                        <td><label>Select next step  </label></td>
+                        <td><select name="nextStep" id="selectedStep" class="form-control" ng-model="contract.firstReviewProcess" ng-options="process as process.name for process in nextProcesses">
+                            <option value="">Select Next Step</option>
+                        </select></td>
+                    </tr>
+
+                    <tr ng-if="$root.showElement('ADVANCED')">
+                        <td class="col-sm-6">
+                            <div style="display: table-cell">
+                            <label>Need Related Divisions Review  </label>
+                            <input type="checkbox" name="hasRelatedIntervalDivs" id="hasRelatedIntervalDivs"
+                                   ng-model="hasRelatedIntervalDivs">
+                            </div></td>
+                        <td class="col-sm-6">
+                            <div ng-switch="hasRelatedIntervalDivs">
+                                <div ng-switch-when="true">
+                                    <table>
+                                        <tr ng-repeat="dept in addedRelatedInternvalDivisions track by dept.id">
+                                            <td>
+                                                <input type="text" class="input-sm" value="{{dept.name}}" readonly>
+                                            </td>
+                                            <td>
+                                                <button type="button"
+                                                        ng-click="removeInternalDivs(dept)"
+                                                        class="btn btn-danger btn-sm">
+                                                    <span class="glyphicon glyphicon-trash"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <select name="relatedDiv" id="addedDiv" class="form-control" ng-model="addedDiv" ng-change="addDivs(addedDiv)" ng-controller="DepartmentController" ng-options="dept as dept.name for dept in internalDivisions">
+                                        <option value="">Select A Division</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-if="$root.showElement('ADVANCED')">
+                        <td><label translate="mycontractApp.contract.contracting_method" for="field_contracting_method">ContractingMethod</label></td>
+                        <td><select class="form-control" name="contracting_method" ng-model="contract.contractingMethod" id="field_contracting_method">
+                            <option value="Bid">Bid</option>
+                            <option value="Proposal">Proposal</option>
+                            <option value="Exemption">Exemption</option>
+                            <option value="Other">Other</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><label translate="mycontractApp.contract.amount" for="field_amount">Amount</label></td>
+                        <td><input type="number" class="form-control" name="amount" id="field_amount" required
+                                   ng-model="contract.amount"></td>
+                    </tr>
+                    <tr ng-if="$root.showElement('ADVANCED')">
+                        <td><label translate="mycontractApp.contract.currency" for="field_currency">Currency</label></td>
+                        <td><select class="form-control" name="currency" ng-model="contract.currency" id="field_currency">
+                                <option value="ChineseYuan">ChineseYuan</option>
+                                <option value="USDollar">USDollar</option>
+                                <option value="JapaneseYen">JapaneseYen</option>
+                                <option value="HKDollar">HKDollar</option>
+                                <option value="EURO">EURO</option>
+                                <option value="UKPound">UKPound</option>
+                            </select></td>
+                    </tr>
+                    <tr ng-if="$root.showElement('ADVANCED')">
+                        <td><label translate="mycontractApp.contract.amount_written" for="field_amount_written">Amount_written</label></td>
+                        <td><input type="text" class="form-control" name="amountWritten" id="field_amount_written"
+                               ng-model="contract.amountWritten"></td>
+                    </tr>
+                    <tr ng-if="$root.showElement('ADVANCED')">
+                        <td><label translate="mycontractApp.contract.fund_source" for="field_fund_source">fund_source</label></td>
+                        <td><select class="form-control" id="field_fund_source" name="fundSource" ng-model="contract.fundSource.id" ng-options="fund_source.id as fund_source.name for fund_source in fund_sources">
+                            </select></td>
+                    </tr>
+                    <tr ng-if="$root.showElement('ADVANCED')">
+                        <td><label translate="mycontractApp.contract.amount_current_year" for="field_amount_current_year">Amount_current_year</label></td>
+                        <td><input type="number" class="form-control" name="amountCurrentYear" id="field_amount_current_year"
+                               ng-model="contract.amountCurrentYear"></td>
+                    </tr>
+                    <tr>
+                        <td><label translate="mycontractApp.contract.start_date" for="field_start_date">Start_date</label></td>
+                        <td><input type="date" class="form-control" name="startDate" id="field_start_date"
+                                   required ng-model="contract.startDate" ng-model-options="{timezone: 'UTC'}"></td>
+                    </tr>
+                    <tr>
+                        <td><label translate="mycontractApp.contract.end_date" for="field_end_date">End_date</label></td>
+                        <td><input type="date" class="form-control" name="endDate" id="field_end_date"
+                                   required ng-model="contract.endDate" ng-model-options="{timezone: 'UTC'}"></td>
+                    </tr>
+                    <tr ng-if="$root.showElement('ADVANCED')">
+                        <td><label translate="mycontractApp.contract.expire_date" for="field_expire_date">Expire_date</label></td>
+                        <td><input type="date" class="form-control" name="expireDate" id="field_expire_date"
+                                   ng-model="contract.expireDate" ng-model-options="{timezone: 'UTC'}"></td>
+
+                    <tr ng-if="$root.showElement('ADVANCED')">
+                        <td><label translate="mycontractApp.contract.is_multi_year" for="field_is_multi_year">Is_multi_year</label></td>
+                        <td><input type="checkbox" class="form-control" name="isMultiYear" id="field_is_multi_year"
+                                    ng-model="contract.isMultiYear"></td>
+                    </tr>
+                    <tr ng-if="$root.showElement('STANDARD,ADVANCED')">
+                        <td><label translate="mycontractApp.contract.contract_sample" for="field_contract_sample">contract_sample</label></td>
+                        <td><select class="form-control" id="field_contract_sample" name="contractSample" ng-model="contract.contractSample.id" ng-options="contract_sample.id as contract_sample.name for contract_sample in contract_samples">
+                            </select></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

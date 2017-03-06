@@ -1,0 +1,131 @@
+<div>
+    <div class="alert alert-danger" ng-show="errorEmailExists" translate="settings.messages.error.emailexists">
+        <strong>E-mail is already in use!</strong> Please choose another one.
+    </div>
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myRoleLabel" translate="mycontractApp.user.home.createOrEditLabel">Create or edit a User</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label translate="mycontractApp.user.login">Login Name</label>
+            <input type="text" class="form-control" name="login" placeholder="{{'mycontractApp.user.form.login.placeholder' | translate}}"
+                   ng-model="user.login" ng-minlength=1 ng-maxlength=50 required maxlength="50">
+            <div ng-show="form.login.$dirty && form.login.$invalid">
+                <p class="help-block"
+                   ng-show="form.login.$error.required" translate="settings.messages.validate.login.required">
+                    Your login name is required.
+                </p>
+                <p class="help-block"
+                   ng-show="form.login.$error.minlength" translate="settings.messages.validate.login.minlength">
+                    Your login name is required to be at least 1 character.
+                </p>
+                <p class="help-block"
+                   ng-show="form.login.$error.maxlength" translate="settings.messages.validate.login.maxlength">
+                    Your login name cannot be longer than 50 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group" ng-if="user.id == null">
+            <label translate="mycontractApp.user.password">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="{{'mycontractApp.user.form.password.placeholder' | translate}}"
+                   ng-model="user.password" ng-minlength=5 ng-maxlength=50 required maxlength="50">
+            <div ng-show="form.password.$dirty && form.password.$invalid">
+                <p class="help-block"
+                   ng-show="form.password.$error.required" translate="settings.messages.validate.password.required">
+                    Your password is required.
+                </p>
+                <p class="help-block"
+                   ng-show="form.password.$error.minlength" translate="settings.messages.validate.password.minlength">
+                    Your password is required to be at least 1 character.
+                </p>
+                <p class="help-block"
+                   ng-show="form.password.$error.maxlength" translate="settings.messages.validate.password.maxlength">
+                    Your password cannot be longer than 50 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.user.firstname">First Name</label>
+            <input type="text" class="form-control" name="firstName" placeholder="{{'mycontractApp.user.form.firstname.placeholder' | translate}}"
+                   ng-model="user.firstName" ng-minlength=1 ng-maxlength=50 required maxlength="50">
+            <div ng-show="form.firstName.$dirty && form.firstName.$invalid">
+                <p class="help-block"
+                   ng-show="form.firstName.$error.required" translate="settings.messages.validate.firstname.required">
+                    Your first name is required.
+                </p>
+                <p class="help-block"
+                   ng-show="form.firstName.$error.minlength" translate="settings.messages.validate.firstname.minlength">
+                    Your first name is required to be at least 1 character.
+                </p>
+                <p class="help-block"
+                   ng-show="form.firstName.$error.maxlength" translate="settings.messages.validate.firstname.maxlength">
+                    Your first name cannot be longer than 50 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.user.lastname">Last Name</label>
+            <input type="text" class="form-control" name="lastName" placeholder="{{'mycontractApp.user.form.lastname.placeholder' | translate}}"
+                   ng-model="user.lastName" ng-minlength=1 ng-maxlength=50 required maxlength="50">
+            <div ng-show="form.lastName.$dirty && form.lastName.$invalid">
+                <p class="help-block"
+                   ng-show="form.lastName.$error.required" translate="settings.messages.validate.lastname.required">
+                    Your last name is required.
+                </p>
+                <p class="help-block"
+                   ng-show="form.lastName.$error.minlength" translate="settings.messages.validate.lastname.minlength">
+                    Your last name is required to be at least 1 character.
+                </p>
+                <p class="help-block"
+                   ng-show="form.lastName.$error.maxlength" translate="settings.messages.validate.lastname.maxlength">
+                    Your last name cannot be longer than 50 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="global.form.email">E-mail</label>
+            <input type="email" class="form-control" name="email" placeholder="{{'global.form.email.placeholder' | translate}}"
+                   ng-model="user.email" ng-minlength=5 ng-maxlength=100 required maxlength="100">
+            <div ng-show="form.email.$dirty && form.email.$invalid">
+                <p class="help-block"
+                   ng-show="form.email.$error.required" translate="global.messages.validate.email.required">
+                    Your e-mail is required.
+                </p>
+                <p class="help-block"
+                   ng-show="form.email.$error.email" translate="global.messages.validate.email.invalid">
+                    Your e-mail is invalid.
+                </p>
+                <p class="help-block"
+                   ng-show="form.email.$error.minlength" translate="global.messages.validate.email.minlength">
+                    Your e-mail is required to be at least 5 characters.
+                </p>
+                <p class="help-block"
+                   ng-show="form.email.$error.maxlength" translate="global.messages.validate.email.maxlength">
+                    Your e-mail cannot be longer than 100 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.user.department">Department</label>
+            <select name="department" class="form-control" ng-model="data.selectedDept" ng-controller="DepartmentController" ng-options="department as department.name for department in departments"></select>
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.user.language">Language</label>
+            <select name="langKey" class="form-control" ng-model="user.langKey" ng-controller="LanguageController" ng-options="code as (code | findLanguageFromKey) for code in languages"></select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
+
+    </div>

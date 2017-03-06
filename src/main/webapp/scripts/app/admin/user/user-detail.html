@@ -1,0 +1,105 @@
+
+<div>
+    <h2> {{user.lastName}} {{user.firstName}}</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.user.name">Name</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{user.lastName}} {{user.firstName}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.user.login">Login</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{user.login}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.user.department">Department</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{user.department}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.user.language">Language</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{user.langKey | findLanguageFromKey}}" ng-controller="LanguageController"  readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th translate="mycontractApp.user.roles.title">User Roles</th>
+                            <th>
+                            <button type="button"
+                                    ng-click="showRole()"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-plus-sign"></span>add role</span>
+                            </button>
+                            </th>
+                            <th>
+                                <button type="button"
+                                        ng-click="addUserRoles()"
+                                        class="btn btn-info btn-sm">
+                                    <span class="glyphicon glyphicon-save"></span>Save</span>
+                                </button>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="role in user.roles track by role">
+                            <td>
+                                <span translate="mycontractApp.user.roles.name">Name</span>
+                            </td>
+                            <td>
+                                <input type="text" class="input-sm form-control" value="{{role}}" readonly>
+                            </td>
+                            <td ng-if="role != 'ROLE_USER'">
+                                <button type="button"
+                                        ng-click="removeUserRole(role)"
+                                        class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.remove"> Remove</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr ng-show="show">
+                            <td>
+                                <span translate="mycontractApp.user.roles.name">Name</span>
+                            </td>
+                            <td>
+                                <select name="role" class="form-control" ng-model="addedRole" ng-change="addRole(addedRole)" ng-controller="RoleController" ng-options="role as role.name for role in roles | filter: { name: '!' + user.roles } ">
+                                    <option value="">Select Role</option>
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="user"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

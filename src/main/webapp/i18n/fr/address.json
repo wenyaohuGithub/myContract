@@ -1,0 +1,24 @@
+{
+    "mycontractApp": {
+        "address" : {
+            "home": {
+                "title": "Addresss",
+                "createLabel": "Créer un nouveau Address",
+                "createOrEditLabel": "Créer ou éditer un Address"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Address {{ id }} ?"
+            },
+            "detail": {
+                "title": "Address"
+            },
+            "address_line_1": "Address_line_1",
+            "address_line_2": "Address_line_2",
+            "city": "City",
+            "province": "Province",
+            "country": "Country",
+            "postal_code": "Postal_code"
+        }
+    }
+}
+

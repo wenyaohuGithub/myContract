@@ -1,0 +1,34 @@
+id;name;description;type;parent_id;active;account_id;created_by
+1;BEIJING_BRANCH;Beijing branch company;BRANCH;null;true;3;System
+2;DEPT_FINANCE;Finance department;DEPT;1;true;3;System
+3;DEPT_LEGAL;Legal department;DEPT;1;true;3;System
+4;DEPT_TECHNOLOGY;Technology department;DEPT;1;true;3;System
+5;DEPT_DEV_STRATEGY;Development and Strategy department;DEPT;1;true;3;System
+6;DIV_FIN_1;Finance department 1st division;DIV;2;true;3;System
+7;DIV_FIN_2;Finance department 2nd division;DIV;2;true;3;System
+8;DIV_FIN_3;Finance department 3rd division;DIV;2;true;3;System
+9;DIV_TECH_1;Technology department 1st division;DIV;4;true;3;System
+10;DIV_TECH_2;Technology department 2nd division;DIV;4;true;3;System
+11;DIV_TECH_3;Technology department 3rd division;DIV;4;true;3;System
+12;DEPT_MARKETING;Marketing department;DEPT;1;true;3;System
+13;DIV_MARKETING_1;Marketing department 1st division;DIV;12;true;3;System
+14;DIV_MARKETING_2;Marketing department 2nd division;DIV;12;true;3;System
+15;DIV_MARKETING_3;Marketing department 3rd division;DIV;12;true;3;System
+16;DEPT_SALES;Sales department;DEPT;1;true;3;System
+17;DIV_SALES_1;Sales department 1st division;DIV;16;true;3;System
+18;DIV_SALES_2;Sales department 2nd division;DIV;16;true;3;System
+19;DIV_SALES_3;Sales department 3rd division;DIV;16;true;3;System
+
+20;SHANGHAI_BRANCH;Shanghai branch company;BRANCH;null;true;2;System
+21;DEPT_FINANCE;Finance department;DEPT;20;true;2;System
+22;DEPT_LEGAL;Legal department;DEPT;20;true;2;System
+23;DEPT_TECHNOLOGY;Technology department;DEPT;20;true;2;System
+24;DEPT_DEV_STRATEGY;Development and Strategy department;DEPT;20;true;2;System
+25;DEPT_MARKETING;Marketing department;DEPT;20;true;2;System
+26;DEPT_SALES;Sales department;DEPT;20;true;2;System
+
+27;WUHAN_BRANCH;Wuhan branch company;BRANCH;null;true;1;System
+28;DEPT_FINANCE;Finance department;DEPT;27;true;1;System
+29;DEPT_LEGAL;Legal department;DEPT;27;true;1;System
+
+

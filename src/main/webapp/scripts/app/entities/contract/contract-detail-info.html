@@ -1,0 +1,96 @@
+<table class="table">
+<tbody>
+<tr ng-if="$root.showElement('ADVANCED')">
+    <td>
+        <span translate="mycontractApp.contract.review_identifier">Review_identifier</span>
+    </td>
+    <td>
+        <input type="text" class="input-sm form-control" value="{{contract.reviewIdentifier}}" readonly>
+    </td>
+    <td>
+        <span translate="mycontractApp.contract.contract_identifier">Contract_identifier</span>
+    </td>
+    <td>
+        <input type="text" class="input-sm form-control" value="{{contract.contractIdentifier}}" readonly>
+    </td>
+</tr>
+
+<tr ng-if="$root.showElement('ADVANCED')">
+    <td>
+        <span translate="mycontractApp.contract.contracting_method">ContractingMethod</span>
+    </td>
+    <td>
+        <input type="text" class="input-sm form-control" value="{{contract.contractingMethod}}" readonly>
+    </td>
+    <td>
+        <span translate="mycontractApp.contract.amount_current_year">Amount_current_year</span>
+    </td>
+    <td>
+        <input type="text" class="input-sm form-control" value="{{contract.amountCurrentYear}}" readonly>
+    </td>
+</tr>
+
+
+<tr>
+    <td>
+        <span translate="mycontractApp.contract.start_date">Start_date</span>
+    </td>
+    <td>
+        <input type="text" class="input-sm form-control" value="{{contract.startDate}}" readonly>
+    </td>
+    <td>
+        <span translate="mycontractApp.contract.end_date">End_date</span>
+    </td>
+    <td>
+        <input type="text" class="input-sm form-control" value="{{contract.endDate}}" readonly>
+    </td>
+</tr>
+
+<tr>
+    <td ng-if="$root.showElement('ADVANCED')">
+        <span translate="mycontractApp.contract.expire_date">Expire_date</span>
+    </td>
+    <td ng-if="$root.showElement('ADVANCED')">
+        <input type="text" class="input-sm form-control" value="{{contract.expireDate}}" readonly>
+    </td>
+    <td ng-if="$root.showElement('ADVANCED')">
+        <span translate="mycontractApp.contract.is_multi_year">Is_multi_year</span>
+    </td>
+    <td ng-if="$root.showElement('ADVANCED')">
+        <input type="text" class="input-sm form-control" value="{{contract.is_multi_year}}" readonly>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <span translate="mycontractApp.contract.approve_date">Approve_date</span>
+    </td>
+    <td>
+        <input type="text" class="input-sm form-control" value="{{contract.approveDate}}" readonly>
+    </td>
+    <td>
+        <span translate="mycontractApp.contract.sign_date">Sign_date</span>
+    </td>
+    <td>
+        <input type="text" class="input-sm form-control" value="{{contract.signDate}}" readonly>
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <span translate="mycontractApp.contract.archive_date">Archive_date</span>
+    </td>
+    <td>
+        <input type="text" class="input-sm form-control" value="{{contract.archiveDate}}" readonly>
+    </td>
+    <td>
+        <span translate="mycontractApp.contract.contract_sample">contract_sample</span>
+    </td>
+    <td>
+        <input type="text" class="input-sm form-control" value="{{contract.contractSample.name}}" readonly>
+    </td>
+</tr>
+
+
+</tbody>
+</table>

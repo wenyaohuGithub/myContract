@@ -1,0 +1,102 @@
+
+<div>
+    <h2><span translate="mycontractApp.contract_party.detail.title">Contract_party</span> {{contract_party.id}}</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_party.name">Name</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_party.name}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_party.description">Description</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_party.description}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_party.registration_id">Registration_id</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_party.registration_id}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_party.registered_capital">Registered_capital</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_party.registered_capital}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_party.legal_representative">Legal_representative</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_party.legal_representative}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_party.registration_inspection_record">Registration_inspection_record</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_party.registration_inspection_record}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_party.professional_certificate">Professional_certificate</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_party.professional_certificate}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_party.business_certificate">Business_certificate</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_party.business_certificate}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div id="content">
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="active"><a data-target="#address" data-toggle="tab">Address</a></li>
+            <li><a data-target="#bank" data-toggle="tab">Bank Information</a></li>
+            <li><a data-target="#contracts" data-toggle="tab">Contracts</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="address"><div ui-view="address"></div></div>
+            <div class="tab-pane" id="bank"><div ui-view="bank"></div></div>
+            <div class="tab-pane" id="contracts"><div ui-view="contracts"></div></div>
+        </div>
+    </div>
+
+    <button type="submit"
+            ui-sref="contract_party"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

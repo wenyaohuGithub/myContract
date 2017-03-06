@@ -1,0 +1,18 @@
+{
+    "mycontractApp": {
+        "testE" : {
+            "home": {
+                "title": "TestEs",
+                "createLabel": "Create a new TestE",
+                "createOrEditLabel": "Create or edit a TestE"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete TestE {{ id }}?"
+            },
+            "detail": {
+                "title": "TestE"
+            },
+            "name": "Name"
+        }
+    }
+}

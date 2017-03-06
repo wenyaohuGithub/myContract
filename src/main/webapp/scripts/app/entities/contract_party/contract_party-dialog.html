@@ -1,0 +1,83 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myContract_partyLabel" translate="mycontractApp.contract_party.home.createOrEditLabel">Create or edit a Contract_party</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label translate="global.field.id">ID</label>
+            <input type="text" class="form-control" name="id"
+                    ng-model="contract_party.id" readonly>
+        </div>
+
+        <div class="form-group">
+            <label translate="mycontractApp.contract_party.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="contract_party.name">
+
+            <div ng-show="editForm.name.$invalid">
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract_party.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                    ng-model="contract_party.description">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract_party.registration_id" for="field_registration_id">Registration_id</label>
+            <input type="text" class="form-control" name="registration_id" id="field_registration_id"
+                    ng-model="contract_party.registration_id">
+
+            <div ng-show="editForm.registration_id.$invalid">
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract_party.registered_capital" for="field_registered_capital">Registered_capital</label>
+            <input type="number" class="form-control" name="registered_capital" id="field_registered_capital"
+                    ng-model="contract_party.registered_capital">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract_party.legal_representative" for="field_legal_representative">Legal_representative</label>
+            <input type="text" class="form-control" name="legal_representative" id="field_legal_representative"
+                    ng-model="contract_party.legal_representative">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract_party.registration_inspection_record" for="field_registration_inspection_record">Registration_inspection_record</label>
+            <input type="text" class="form-control" name="registration_inspection_record" id="field_registration_inspection_record"
+                    ng-model="contract_party.registration_inspection_record">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract_party.professional_certificate" for="field_professional_certificate">Professional_certificate</label>
+            <input type="text" class="form-control" name="professional_certificate" id="field_professional_certificate"
+                    ng-model="contract_party.professional_certificate">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract_party.business_certificate" for="field_business_certificate">Business_certificate</label>
+            <input type="text" class="form-control" name="business_certificate" id="field_business_certificate"
+                    ng-model="contract_party.business_certificate">
+
+        </div>
+
+        <div class="form-group">
+            <label translate="mycontractApp.contract_party.address" for="field_address">address</label>
+            <select class="form-control" id="field_address" name="address" ng-model="contract_party.address.id" ng-options="address.id as address.id for address in addresss">
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

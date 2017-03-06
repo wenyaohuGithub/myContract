@@ -1,0 +1,14 @@
+<!--
+<form name="editForm" role="form" novalidate ng-submit="uploadFile()" show-validation>
+    File to upload: <input type="file" file-model="uploadedFile"><br />
+    <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary start">
+        <span class="glyphicon glyphicon-upload"></span>&nbsp;<span>Start upload</span>
+    </button>
+</form>-->
+<!--
+<form method="POST" enctype="multipart/form-data"
+      action="http://localhost:9090/api/fileupload">
+    File to upload: <input type="file" name="uploadedFile"><br />
+
+</form>-->
+<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>

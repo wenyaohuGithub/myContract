@@ -1,1 +1,2 @@
-# myContract
+README for myContract
+==========================

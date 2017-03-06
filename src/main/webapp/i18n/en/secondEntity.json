@@ -1,0 +1,20 @@
+{
+    "mycontractApp": {
+        "secondEntity" : {
+            "home": {
+                "title": "SecondEntitys",
+                "createLabel": "Create a new SecondEntity",
+                "createOrEditLabel": "Create or edit a SecondEntity"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete SecondEntity {{ id }}?"
+            },
+            "detail": {
+                "title": "SecondEntity"
+            },
+            "name": "Name",
+            "description": "Description",
+            "foreign_key": "foreign_key"
+        }
+    }
+}

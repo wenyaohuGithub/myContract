@@ -1,0 +1,71 @@
+
+<div>
+    <h2><span translate="mycontractApp.message.detail.title">Message</span> {{message.id}}</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.message.subject">Subject</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{message.subject}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.message.content">Content</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{message.content}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.message.send_datetime">Send_datetime</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{message.send_datetime}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.message.read">Read</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{message.read}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.message.sender">sender</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{message.sender.login}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.message.recipient">recipient</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{message.recipient.login}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="message"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

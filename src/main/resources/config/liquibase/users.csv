@@ -1,0 +1,14 @@
+id;login;PASSWORD;first_name;last_name;email;activated;lang_key;created_by;department_id;system
+1;system;$2a$10$mE.qmcV0mFU5NcKh73TZx.z4ueI/.bDWbj0T1BYyqP481kGGarKLG;System;System;system@localhost;true;en;system;null;true
+2;anonymousUser;$2a$10$j8S5d7Sr7.8VTOYNviDPOeWX8KcYILUVJBsYV83Y5NtECayypx9lO;Anonymous;User;anonymous@localhost;true;en;system;null;true
+3;admin;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Administrator;Administrator;admin@localhost;true;en;system;null;true
+4;user;$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K;User;User;user@localhost;true;en;system;null;true
+5;wenyao;$2a$10$vkW3JgC/Dfxityuhj5NwE.Dy7qkSiKrUF9zhzmC1NhEiimG97sGHa;Wenyao;Hu;wenyao@test.com;true;en;system;9;false
+6;tester;$2a$10$vkW3JgC/Dfxityuhj5NwE.Dy7qkSiKrUF9zhzmC1NhEiimG97sGHa;QA;Test;test@test.com;true;en;system;9;false
+7;divContract;$2a$10$vkW3JgC/Dfxityuhj5NwE.Dy7qkSiKrUF9zhzmC1NhEiimG97sGHa;Division;ContractManager;divContract@test.com;true;en;system;9;false
+8;deptContract;$2a$10$vkW3JgC/Dfxityuhj5NwE.Dy7qkSiKrUF9zhzmC1NhEiimG97sGHa;Department;ContractManager;deptContract@test.com;true;en;system;9;false
+9;sealmanager;$2a$10$vkW3JgC/Dfxityuhj5NwE.Dy7qkSiKrUF9zhzmC1NhEiimG97sGHa;Seal;Manager;sealmgr@test.com;true;en;system;null;false
+10;executive;$2a$10$vkW3JgC/Dfxityuhj5NwE.Dy7qkSiKrUF9zhzmC1NhEiimG97sGHa;Company;Executive;executive@test.com;true;en;system;null;false
+11;buser;$2a$10$vkW3JgC/Dfxityuhj5NwE.Dy7qkSiKrUF9zhzmC1NhEiimG97sGHa;User;BasicAccount;bUser@test.com;true;en;system;9;false
+12;suser;$2a$10$vkW3JgC/Dfxityuhj5NwE.Dy7qkSiKrUF9zhzmC1NhEiimG97sGHa;User;StandardAccount;sUser@test.com;true;en;system;9;false
+13;auser;$2a$10$vkW3JgC/Dfxityuhj5NwE.Dy7qkSiKrUF9zhzmC1NhEiimG97sGHa;User;AdvancedAccount;aUser@test.com;true;en;system;9;false

@@ -1,0 +1,23 @@
+{
+    "mycontractApp": {
+        "message" : {
+            "home": {
+                "title": "Messages",
+                "createLabel": "Create a new Message",
+                "createOrEditLabel": "Create or edit a Message"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Message {{ id }}?"
+            },
+            "detail": {
+                "title": "Message"
+            },
+            "subject": "Subject",
+            "content": "Content",
+            "send_datetime": "Send_datetime",
+            "read": "Read",
+            "sender": "sender",
+            "recipient": "recipient"
+        }
+    }
+}

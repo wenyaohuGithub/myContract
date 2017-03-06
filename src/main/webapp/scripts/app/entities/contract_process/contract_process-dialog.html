@@ -1,0 +1,47 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myContract_processLabel" translate="mycontractApp.contract_process.home.createOrEditLabel">Create or edit a Contract_process</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label translate="global.field.id">ID</label>
+            <input type="text" class="form-control" name="id"
+                    ng-model="contract_process.id" readonly>
+        </div>
+
+        <div class="form-group">
+            <label translate="mycontractApp.contract_process.sequence" for="field_sequence">Sequence</label>
+            <input type="number" class="form-control" name="sequence" id="field_sequence"
+                    ng-model="contract_process.sequence">
+
+        </div>
+
+        <div class="form-group">
+            <label translate="mycontractApp.contract_process.process" for="field_process">process</label>
+            <select class="form-control" id="field_process" name="process" ng-model="contract_process.process.id" ng-options="process.id as process.id for process in processs">
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract_process.department" for="field_department">department</label>
+            <select class="form-control" id="field_department" name="department" ng-model="contract_process.department.id" ng-options="department.id as department.id for department in departments">
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract_process.user" for="field_user">user</label>
+            <select class="form-control" id="field_user" name="user" ng-model="contract_process.user.id" ng-options="user.id as user.id for user in users">
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

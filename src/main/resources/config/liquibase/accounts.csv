@@ -1,0 +1,6 @@
+id;name;description;active;deleted;process_configuration;created_by
+1;basic;basic account;true;false;BASIC;system
+2;standard;standard account;true;false;STANDARD;system
+3;advanced;advanced account;true;false;ADVANCED;system
+4;default;default account;true;false;ADVANCED;system
+

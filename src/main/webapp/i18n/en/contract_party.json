@@ -1,0 +1,33 @@
+{
+    "mycontractApp": {
+        "contract_party" : {
+            "home": {
+                "title": "Contract Parties",
+                "createLabel": "Create a new Contract Party",
+                "createOrEditLabel": "Create or edit a Contract Party"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Contract Party {{ id }}?"
+            },
+            "detail": {
+                "title": "Contract Party"
+            },
+            "name": "Name",
+            "description": "Description",
+            "registration_id": "Registration_id",
+            "registered_capital": "Registered_capital",
+            "legal_representative": "Legal_representative",
+            "registration_inspection_record": "Registration_inspection_record",
+            "professional_certificate": "Professional_certificate",
+            "business_certificate": "Business_certificate",
+            "address": "Address",
+            "address_line_1": "address line 1",
+            "address_line_2": "address line 2",
+            "city": "City",
+            "province": "Province",
+            "country": "Country",
+            "postal_code": "Postal Code",
+            "bank_account": "bank_account"
+        }
+    }
+}

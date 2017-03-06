@@ -1,0 +1,23 @@
+{
+    "mycontractApp": {
+        "contract_process" : {
+            "home": {
+                "title": "Contract_processs",
+                "createLabel": "Créer un nouveau Contract_process",
+                "createOrEditLabel": "Créer ou éditer un Contract_process"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Contract_process {{ id }} ?"
+            },
+            "detail": {
+                "title": "Contract_process"
+            },
+            "sequence": "Sequence",
+            "contract": "contract",
+            "process": "process",
+            "department": "department",
+            "user": "user"
+        }
+    }
+}
+

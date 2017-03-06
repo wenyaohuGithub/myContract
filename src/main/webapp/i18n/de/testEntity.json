@@ -1,0 +1,18 @@
+{
+    "mycontractApp": {
+        "testEntity" : {
+            "home": {
+                "title": "TestEntitys",
+                "createLabel": "Create a new TestEntity",
+                "createOrEditLabel": "Create or edit a TestEntity"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete TestEntity {{ id }}?"
+            },
+            "detail": {
+                "title": "TestEntity"
+            },
+            "testField": "TestField"
+        }
+    }
+}

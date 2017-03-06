@@ -1,0 +1,22 @@
+{
+    "mycontractApp": {
+        "fund_source" : {
+            "home": {
+                "title": "Fund_sources",
+                "createLabel": "Créer un nouveau Fund_source",
+                "createOrEditLabel": "Créer ou éditer un Fund_source"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Fund_source {{ id }} ?"
+            },
+            "detail": {
+                "title": "Fund_source"
+            },
+            "name": "Name",
+            "description": "Description",
+            "deleted": "Deleted",
+            "deleted_date_time": "Deleted_date_time"
+        }
+    }
+}
+

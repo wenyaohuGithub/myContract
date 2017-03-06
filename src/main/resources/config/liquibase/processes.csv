@@ -1,0 +1,16 @@
+id;name;description
+1;CONTRACT_DRAFT;Draft a contract
+2;INTERNAL_DIV_REVIEW;Internal division review
+3;RELATED_DIV_REVIEW;Related division review
+4;INTERNAL_DEPT_REVIEW;Internal department review
+5;RELATED_DEPT_REVIEW;Related department review
+6;FINANCE_DEPT_REVIEW;Finance department review
+7;LEGAL_DEPT_REVIEW;Legal department review
+8;TECH_DEPT_REVIEW;Technology department review
+9;DEV_STRATEGY_DEPT_REVIEW;Development and Strategy department review
+10;EXECUTIVE_REVIEW;Executive review
+11;CONTRACT_SIGN;Sign contract
+12;CONTRACT_EXECUTION;Execute contract
+13;CONTRACT_ARCHIVE;Archive contract
+
+

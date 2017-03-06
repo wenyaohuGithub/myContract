@@ -1,0 +1,59 @@
+<form name="editForm" role="form" novalidate ng-submit="search()" show-validation>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <label>Search contract</label>
+    </div>
+
+    <div class="modal-body">
+        <div class="table-responsive">
+            <table class="table">
+                <tbody style="display:block; overflow: auto; height: 500px">
+                    <tr>
+                        <td><label>Name like</label></td>
+                        <td>
+                            <input type="text" class="form-control" name="name" id="field_name" ng-model="searchText.name">
+                        </td>
+                        <td><label translate="mycontractApp.contract.contract_party" for="contractParty">contract party</label></td>
+                        <td><select name="contractParty" id="contractParty" class="form-control" ng-model="searchText.contractParty" ng-controller="Contract_partyController" ng-options="party as party.name for party in contract_parties">
+                            <option value="">Select A Contract Party</option>
+                        </select></td>
+                    </tr>
+                    <tr ng-if="$root.showElement('STANDARD,ADVANCED')">
+                        <td><label translate="mycontractApp.contract.project" for="project">Project</label></td>
+                        <td><select name="project" id="project" class="form-control" ng-model="searchText.project" ng-controller="ProjectController" ng-options="project as project.name for project in projects">
+                            <option value="">Select A Project</option>
+                        </select></td>
+                        <td><label translate="mycontractApp.contract.category" for="category">Category</label></td>
+                        <td><select name="category" id="category" class="form-control" ng-model="searchText.category" ng-change="categorySelected()" ng-controller="CategoryController" ng-options="category as category.name for category in categories">
+                            <option value="">Select A Category</option>
+                        </select></td>
+                    </tr>
+
+                    <tr>
+                        <td><label>Amount between</label></td>
+                        <td class="col-sm-2"><input type="number" class="form-control" name="amount" id="field_amount_1" ng-model="searchText.amount1"></td>
+                        <td class="col-sm-2"><label>and</label></td>
+                        <td class="col-sm-2"><input type="number" class="form-control" name="amount" id="field_amount_2" ng-model="searchText.amount2"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Sign date between</label></td>
+                        <td><input type="date" class="form-control" name="signDate1" id="field_sign_date_1"
+                                   ng-model="searchText.signDate1"></td>
+                        <td><label>and </label></td>
+                        <td><input type="date" class="form-control" name="signDate2" id="field_sign_date_2"
+                                   ng-model="searchText.signDate2"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.submit">Submit</span>
+        </button>
+    </div>
+</form>

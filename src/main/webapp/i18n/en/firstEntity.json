@@ -1,0 +1,18 @@
+{
+    "mycontractApp": {
+        "firstEntity" : {
+            "home": {
+                "title": "FirstEntitys",
+                "createLabel": "Create a new FirstEntity",
+                "createOrEditLabel": "Create or edit a FirstEntity"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete FirstEntity {{ id }}?"
+            },
+            "detail": {
+                "title": "FirstEntity"
+            },
+            "name": "Name"
+        }
+    }
+}

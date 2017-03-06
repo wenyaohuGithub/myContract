@@ -1,0 +1,18 @@
+{
+    "mycontractApp": {
+        "account" : {
+            "home": {
+                "title": "Account",
+                "createLabel": "Create a new Account",
+                "createOrEditLabel": "Create or edit a Account"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Account {{ id }}?"
+            },
+            "detail": {
+                "title": "Account"
+            },
+            "name": "Name"
+        }
+    }
+}

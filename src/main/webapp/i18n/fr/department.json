@@ -1,0 +1,24 @@
+{
+    "mycontractApp": {
+        "department" : {
+            "home": {
+                "title": "Departments",
+                "createLabel": "Créer un nouveau Department",
+                "createOrEditLabel": "Créer ou éditer un Department"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Department {{ id }} ?"
+            },
+            "detail": {
+                "title": "Department"
+            },
+            "name": "Name",
+            "description": "Description",
+            "note": "Note",
+            "manager": "manager",
+            "employee": "employee",
+            "parent_department": "parent_department"
+        }
+    }
+}
+

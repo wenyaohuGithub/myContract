@@ -1,0 +1,19 @@
+{
+    "mycontractApp": {
+        "role" : {
+            "home": {
+                "title": "Roles",
+                "createLabel": "Créer un nouveau Role",
+                "createOrEditLabel": "Créer ou éditer un Role"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Role {{ id }} ?"
+            },
+            "detail": {
+                "title": "Role"
+            },
+            "name": "Name"
+        }
+    }
+}
+

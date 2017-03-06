@@ -1,0 +1,5 @@
+id;name;identifier;description;manager;account_id
+1;Company new communication infrastructure project;CCI-001;sample project for basic account;胡文耀;1
+2;Company computer equipment replacement project;CCI-002;sample project for standard account;Wenyao Hu;2
+3;Company intranet system project;CIS-001;sample project for advanced account;Wenyao Hu;3
+

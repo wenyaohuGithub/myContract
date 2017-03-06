@@ -1,0 +1,27 @@
+{
+    "mycontractApp": {
+        "organization" : {
+            "home": {
+                "title": "Organizations",
+                "createLabel": "Créer un nouveau Organization",
+                "createOrEditLabel": "Créer ou éditer un Organization"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Organization {{ id }} ?"
+            },
+            "detail": {
+                "title": "Organization"
+            },
+            "name": "Name",
+            "description": "Description",
+            "active": "Active",
+            "session_timeout": "Session_timeout",
+            "smtp_enabled": "Smtp_enabled",
+            "smtp_server_address": "Smtp_server_address",
+            "smtp_username": "Smtp_username",
+            "smtp_password": "Smtp_password",
+            "smtp_port": "Smtp_port"
+        }
+    }
+}
+

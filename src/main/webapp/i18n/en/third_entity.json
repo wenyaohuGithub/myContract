@@ -1,0 +1,19 @@
+{
+    "mycontractApp": {
+        "third_entity" : {
+            "home": {
+                "title": "Third_entitys",
+                "createLabel": "Create a new Third_entity",
+                "createOrEditLabel": "Create or edit a Third_entity"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Third_entity {{ id }}?"
+            },
+            "detail": {
+                "title": "Third_entity"
+            },
+            "name": "Name",
+            "mtom": "mtom"
+        }
+    }
+}

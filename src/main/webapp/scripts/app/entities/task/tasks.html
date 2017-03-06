@@ -1,0 +1,26 @@
+<div>
+
+    <h2 translate="mycontractApp.task.home.title">Tasks</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="mycontractApp.task.contract">contract</th>
+                    <th translate="mycontractApp.task.process">process</th>
+                    <th translate="mycontractApp.task.assignee">assignee</th>
+                    <th translate="mycontractApp.task.result">result</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="task in tasks">
+                    <td><a ui-sref="contract.detail({id:task.contractId})">{{task.contractName}}</a></td>
+                    <td>{{task.processName}}</td>
+                    <td>{{task.assignee}}</td>
+                    <td>{{task.result}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

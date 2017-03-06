@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql"/>
+    <property name="autoIncrement" value="false" dbms="oracle"/>
+    <!--
+        Added the entity Contract.
+    -->
+    <changeSet id="20161216011221" author="whu">
+        <createTable tableName="MC_CONTRACT_DEPARTMENT">
+            <column name="contract_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="department_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="contract_id"
+                                 baseTableName="MC_CONTRACT_DEPARTMENT"
+                                 constraintName="fk_contract_department_contract_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="MC_CONTRACT"/>
+
+        <addForeignKeyConstraint baseColumnNames="department_id"
+                                 baseTableName="MC_CONTRACT_DEPARTMENT"
+                                 constraintName="fk_contract_department_department_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="MC_DEPARTMENT"/>
+
+        <createTable tableName="MC_CONTRACT_PROJECT">
+            <column name="contract_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="project_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="contract_id, project_id" tableName="MC_CONTRACT_PROJECT"/>
+
+        <addForeignKeyConstraint baseColumnNames="contract_id"
+                                 baseTableName="MC_CONTRACT_PROJECT"
+                                 constraintName="fk_contractproject_contract_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="MC_CONTRACT"/>
+
+        <addForeignKeyConstraint baseColumnNames="project_id"
+                                 baseTableName="MC_CONTRACT_PROJECT"
+                                 constraintName="fk_project_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="MC_PROJECT"/>
+
+        <createTable tableName="MC_CONTRACTPARTY_CONTRACT">
+            <column name="contract_party_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contract_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="contract_party_id, contract_id" tableName="MC_CONTRACTPARTY_CONTRACT"/>
+
+        <addForeignKeyConstraint baseColumnNames="contract_id"
+                                 baseTableName="MC_CONTRACTPARTY_CONTRACT"
+                                 constraintName="fk_contractpartycontract_contract_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="MC_CONTRACT"/>
+
+        <addForeignKeyConstraint baseColumnNames="contract_party_id"
+                                 baseTableName="MC_CONTRACTPARTY_CONTRACT"
+                                 constraintName="fk_contractpartycontract_contract_party_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="MC_CONTRACT_PARTY"/>
+
+    </changeSet>
+</databaseChangeLog>
