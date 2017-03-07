@@ -475,7 +475,6 @@
                     <expandEmptyElements>false</expandEmptyElements>
                 </configuration>
             </plugin>
-            <!--
             <plugin>
                 <groupId>com.mysema.maven</groupId>
                 <artifactId>apt-maven-plugin</artifactId>
@@ -499,7 +498,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
-
+<!--
             <plugin>
                 <groupId>com.mysema.querydsl</groupId>
                 <artifactId>querydsl-maven-plugin</artifactId>
