@@ -1,5 +1,6 @@
 package com.hu.cm.jpa.predicates;
 
+import com.hu.cm.domain.QContract;
 import com.mysema.query.types.Predicate;
 import org.joda.time.DateTime;
 
