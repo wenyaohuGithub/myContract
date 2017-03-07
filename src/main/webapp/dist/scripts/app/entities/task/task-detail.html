@@ -1,0 +1,63 @@
+
+<div>
+    <h2><span translate="mycontractApp.task.detail.title">Task</span> {{task.id}}</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.task.sequence">Sequence</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{task.sequence}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.task.contract">contract</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{task.contract.id}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.task.process">process</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{task.process.name}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.task.department">department</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{task.department.name}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.task.user">user</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{task.user.login}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="task"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

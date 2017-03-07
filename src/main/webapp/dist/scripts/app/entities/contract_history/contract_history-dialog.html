@@ -1,0 +1,68 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myContract_historyLabel" translate="mycontractApp.contract_history.home.createOrEditLabel">Create or edit a Contract_history</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label translate="global.field.id">ID</label>
+            <input type="text" class="form-control" name="id"
+                    ng-model="contract_history.id" readonly>
+        </div>
+
+        <div class="form-group">
+            <label translate="mycontractApp.contract_history.note" for="field_note">Note</label>
+            <input type="text" class="form-control" name="note" id="field_note"
+                    ng-model="contract_history.note">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract_history.action" for="field_action">Action</label>
+            <select class="form-control" name="action" ng-model="contract_history.action" id="field_action">
+               <option value="APPROVE">APPROVE</option>
+               <option value="REJECT">REJECT</option>
+               <option value="COMMENT">COMMENT</option>
+               <option value="CREATE">CREATE</option>
+               <option value="DELETE">DELETE</option>
+               <option value="ADD">ADD</option>
+               <option value="SIGN">SIGN</option>
+               <option value="ARCHIVE">ARCHIVE</option>
+               <option value="MODIFY">MODIFY</option>
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract_history.action_datetime" for="field_action_datetime">Action_datetime</label>
+            <input type="datetime-local" class="form-control" name="action_datetime" id="field_action_datetime"
+                    ng-model="contract_history.action_datetime" ng-model-options="{timezone: 'UTC'}">
+
+        </div>
+
+        <div class="form-group">
+            <label translate="mycontractApp.contract_history.contract" for="field_contract">contract</label>
+            <select class="form-control" id="field_contract" name="contract" ng-model="contract_history.contract.id" ng-options="contract.id as contract.id for contract in contracts">
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract_history.user" for="field_user">user</label>
+            <select class="form-control" id="field_user" name="user" ng-model="contract_history.user.id" ng-options="user.id as user.id for user in users">
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.contract_history.process" for="field_process">process</label>
+            <select class="form-control" id="field_process" name="process" ng-model="contract_history.process.id" ng-options="process.id as process.id for process in processs">
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

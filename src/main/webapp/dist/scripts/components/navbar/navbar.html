@@ -1,0 +1,193 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/"><span translate="global.title">myContract</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">
+            <ul class="nav navbar-nav nav-pills navbar-right">
+                <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="message"><span class="glyphicon glyphicon-envelope icon-success"></span>
+                    &#xA0;<span translate="global.menu.entities.message">message</span></a></li>
+                <li class="dropdown pointer" ng-switch-when="true">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                                <span>
+                                    <span class="glyphicon glyphicon-alert icon-success"></span>
+                                    <!--<i class="fa fa-camera-retro fa-lg"></i>-->
+                                    <span class="hidden-tablet" translate="global.menu.alert">
+                                        Alert
+                                    </span>
+                                    <b class="caret"></b>
+                                </span>
+                    </a>
+                </li>
+                <li ng-class="{active: $state.includes('admin')}"  ng-switch-when="true" has-role="ROLE_ADMIN" class="dropdown pointer">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                                <span>
+                                    <span class="glyphicon glyphicon-tower icon-success"></span>
+                                    <span class="hidden-tablet" translate="global.menu.admin.main">Administration</span>
+                                    <b class="caret"></b>
+                                </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li ui-sref-active="active" ><a ui-sref="account"><span class="glyphicon glyphicon-asterisk icon-success"></span>
+                            &#xA0;<span translate="global.menu.entities.account">Account</span></a></li>
+                        <li ui-sref-active="active" ><a ui-sref="department"><span class="glyphicon glyphicon-asterisk icon-success"></span>
+                            &#xA0;<span translate="global.menu.entities.department">Department</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="role"><span class="glyphicon glyphicon-cog icon-success"></span>
+                            &#xA0;<span translate="global.menu.admin.role">Role</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="user"><span class="glyphicon glyphicon-user icon-success"></span>
+                            &#xA0;<span translate="global.menu.admin.user">User</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="authority"><span class="glyphicon glyphicon-certificate icon-success"></span>
+                            &#xA0;<span translate="global.menu.admin.authority">Authority</span></a></li>
+                    </ul>
+                </li>
+                <li ng-class="{active: $state.includes('system')}"  ng-switch-when="true" has-role="ROLE_ADMIN" class="dropdown pointer">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                                <span>
+                                    <span class="glyphicon glyphicon-info-sign icon-success"></span>
+                                    <span class="hidden-tablet" translate="global.menu.system.main">System</span>
+                                    <b class="caret"></b>
+                                </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li ui-sref-active="active"><a ui-sref="metrics"><span class="glyphicon glyphicon-dashboard icon-success"></span>
+                            &#xA0;<span translate="global.menu.system.metrics">Metrics</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="health"><span class="glyphicon glyphicon-heart icon-success"></span>
+                            &#xA0;<span translate="global.menu.system.health">Health</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="configuration"><span class="glyphicon glyphicon-list-alt icon-success"></span>
+                            &#xA0;<span translate="global.menu.system.configuration">Configuration</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="audits"><span class="glyphicon glyphicon-bell icon-success"></span>
+                            &#xA0;<span translate="global.menu.system.audits">Audits</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="logs"><span class="glyphicon glyphicon-tasks icon-success"></span>
+                            &#xA0;<span translate="global.menu.system.logs">Logs</span></a></li>
+                        <li ui-sref-active="active"><a ui-sref="docs"><span class="glyphicon glyphicon-book icon-success"></span>
+                            &#xA0;<span translate="global.menu.system.apidocs">API</span></a></li>
+                    </ul>
+                </li>
+                <li ng-class="{active: $state.includes('useraccount')}" class="dropdown pointer" ng-switch-when="true">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                                <span>
+                                    <span class="glyphicon glyphicon-user icon-success"></span>
+                                    <span class="hidden-tablet"translate="global.menu.useraccount.main">You</span>
+                                    <b class="caret"></b>
+                                </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li ui-sref-active="active" ><a ui-sref="settings"><span class="glyphicon glyphicon-wrench icon-success"></span>
+                            &#xA0;<span translate="global.menu.useraccount.settings">Settings</span></a></li>
+                        <li ui-sref-active="active" ><a ui-sref="password"><span class="glyphicon glyphicon-lock icon-success"></span>
+                            &#xA0;<span translate="global.menu.useraccount.password">Password</span></a></li>
+                        <li ui-sref-active="active" ><a ui-sref="logout"><span class="glyphicon glyphicon-log-out icon-success"></span>
+                            &#xA0;<span translate="global.menu.useraccount.logout">Log out</span></a></li>
+                        <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="login"><span class="glyphicon glyphicon-log-in icon-success"></span>
+                            &#xA0;<span translate="global.menu.useraccount.login">Authenticate</span></a></li>
+
+                        <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="register"><span class="glyphicon glyphicon-plus-sign icon-success"></span>
+                            &#xA0;<span translate="global.menu.useraccount.register">Register</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+</nav>
+<div class="navbar-default sidebar" role="navigation" style="margin-top: 20px">
+    <div class="sidebar-nav navbar-collapse" ng-switch="isAuthenticated()">
+        <ul class="nav" id="side-menu" ng-switch-when="true">
+            <li class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="glyphicon glyphicon-search icon-success"></i>
+                                </button>
+                            </span>
+                </div>
+                <!-- /input-group -->
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="dashboard">
+                    <span class="glyphicon glyphicon-dashboard icon-success"></span>
+                    <span translate="global.menu.dashboard">Dashboard</span>
+                </a>
+            </li>
+            <li ng-if="showElement('STANDARD,ADVANCED')" ui-sref-active="active" has-any-role="ROLE_ADMIN,ROLE_EXECUTIVE">
+                <a ui-sref="project">
+                    <span class="glyphicon glyphicon-th-list icon-success"></span>
+                    <span translate="global.menu.project">Project</span>
+                </a>
+            </li>
+            <li ng-if="showElement('STANDARD,ADVANCED')" ui-sref-active="active" has-any-role="ROLE_ADMIN,ROLE_EXECUTIVE">
+                <a ui-sref="category">
+                    <span class="glyphicon glyphicon-list-alt"></span>
+                    <span translate="global.menu.category">Category</span>
+                </a>
+            </li>
+            <!--
+            <li ui-sref-active="active">
+                <a ui-sref="contract">
+                    <span class="glyphicon glyphicon-file"></span>
+                    <span translate="global.menu.contract">Contract</span>
+                </a>
+            </li>
+            -->
+
+            <li ui-sref-active="active" class="dropdown pointer">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                                <span>
+                                    <span class="glyphicon glyphicon-file"></span>
+                                    <span translate="global.menu.contract.main">Contract</span>
+                                    <b class="caret"></b>
+                                </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="nav-second-level"  ><a ui-sref="contract"><span class="fa fa-gears"></span>
+                        &#xA0;<span translate="global.menu.contract.mine">My Contracts</span></a></li>
+                    <li class="nav-second-level"  ><a ui-sref="contract.new"><span class="fa fa-chain"></span>
+                        &#xA0;<span translate="global.menu.contract.new">Create A Contract</span></a></li>
+                    <li class="nav-second-level"  ><a ui-sref="contract.search"><span class="fa fa-search"></span>
+                        &#xA0;<span translate="global.menu.contract.search">Search Contracts</span></a></li>
+                    <li class="nav-second-level" ><a ui-sref="contract.statistics"><span class="fa fa-line-chart"></span>
+                        &#xA0;<span translate="global.menu.contract.statistics">Contracts Statistics</span></a></li>
+                </ul>
+            </li>
+            <li ng-if="showElement('ADVANCED')" ui-sref-active="active">
+                <a ui-sref="task">
+                    <span class="glyphicon glyphicon-tasks"></span>
+                    <span translate="global.menu.task">Task</span>
+                </a>
+            </li>
+            <li ui-sref-active="active" has-any-role="ROLE_ADMIN,ROLE_EXECUTIVE">
+                <a ui-sref="contract_party">
+                    <span class="fa fa-external-link"></span>
+                    <span translate="global.menu.contract_party">contract_party</span>
+                </a>
+            </li>
+
+            <li ng-if="$root.showElement('ADVANCED')" ui-sref-active="active" class="dropdown pointer"  has-any-role="ROLE_ADMIN,ROLE_EXECUTIVE">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                                <span>
+                                    <span class="glyphicon glyphicon-th-list"></span>
+                                    <span class="hidden-tablet" translate="global.menu.configurations.main">
+                                        Configurations
+                                    </span>
+                                    <b class="caret"></b>
+                                </span>
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li ui-sref-active="active" ><a ui-sref="process"><span class="fa fa-gears"></span>
+                    &#xA0;<span translate="global.menu.configurations.process">process</span></a></li>
+                    <li ui-sref-active="active" ><a ui-sref="workflow"><span class="fa fa-chain"></span>
+                        &#xA0;<span translate="global.menu.configurations.workflow">workflow</span></a></li>
+                    <li ui-sref-active="active" ><a ui-sref="contract_sample"><span class="fa fa-upload"></span>
+                    &#xA0;<span translate="global.menu.configurations.contract_sample">contract_sample</span></a></li>
+                    <li ui-sref-active="active" ><a ui-sref="fund_source"><span class="fa fa-money"></span>
+                        &#xA0;<span translate="global.menu.configurations.fund_source">fund_source</span></a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

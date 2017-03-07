@@ -1,0 +1,71 @@
+
+<div>
+    <h2><span translate="mycontractApp.contract_history.detail.title">Contract_history</span> {{contract_history.id}}</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_history.note">Note</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_history.note}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_history.action">Action</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_history.action}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_history.action_datetime">Action_datetime</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_history.action_datetime}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_history.contract">contract</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_history.contractId}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_history.user">user</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_history.userId}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_history.process">process</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_history.processId}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="contract_history"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

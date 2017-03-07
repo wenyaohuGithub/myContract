@@ -1,0 +1,82 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myOrganizationLabel" translate="mycontractApp.organization.home.createOrEditLabel">Create or edit a Organization</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label translate="global.field.id">ID</label>
+            <input type="text" class="form-control" name="id"
+                    ng-model="organization.id" readonly>
+        </div>
+
+        <div class="form-group">
+            <label translate="mycontractApp.organization.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="organization.name">
+
+            <div ng-show="editForm.name.$invalid">
+            </div>
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.organization.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                    ng-model="organization.description">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.organization.active" for="field_active">Active</label>
+            <input type="checkbox" class="form-control" name="active" id="field_active"
+                    ng-model="organization.active">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.organization.session_timeout" for="field_session_timeout">Session_timeout</label>
+            <input type="number" class="form-control" name="session_timeout" id="field_session_timeout"
+                    ng-model="organization.session_timeout">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.organization.smtp_enabled" for="field_smtp_enabled">Smtp_enabled</label>
+            <input type="checkbox" class="form-control" name="smtp_enabled" id="field_smtp_enabled"
+                    ng-model="organization.smtp_enabled">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.organization.smtp_server_address" for="field_smtp_server_address">Smtp_server_address</label>
+            <input type="text" class="form-control" name="smtp_server_address" id="field_smtp_server_address"
+                    ng-model="organization.smtp_server_address">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.organization.smtp_username" for="field_smtp_username">Smtp_username</label>
+            <input type="text" class="form-control" name="smtp_username" id="field_smtp_username"
+                    ng-model="organization.smtp_username">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.organization.smtp_password" for="field_smtp_password">Smtp_password</label>
+            <input type="text" class="form-control" name="smtp_password" id="field_smtp_password"
+                    ng-model="organization.smtp_password">
+
+        </div>
+        <div class="form-group">
+            <label translate="mycontractApp.organization.smtp_port" for="field_smtp_port">Smtp_port</label>
+            <input type="number" class="form-control" name="smtp_port" id="field_smtp_port"
+                    ng-model="organization.smtp_port">
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

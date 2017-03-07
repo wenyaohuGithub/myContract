@@ -1,0 +1,100 @@
+
+<div>
+    <h2><span translate="mycontractApp.workflow.detail.title">Workflow</span> {{workflow.id}}</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.workflow.name">Name</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{workflow.name}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.workflow.description">Description</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{workflow.description}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.workflow.account">Account</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{workflow.account.name}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th translate="mycontractApp.workflow.process">Process</th>
+                            <th>
+                                <button type="button"
+                                        ng-click="showProcess()"
+                                        class="btn btn-info btn-sm">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>add process</span>
+                                </button>
+                            </th>
+                            <th>
+                                <button type="button"
+                                        ng-click="addWorkflowProcess()"
+                                        class="btn btn-info btn-sm">
+                                    <span class="glyphicon glyphicon-save"></span>Save</span>
+                                </button>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="process in workflow.processes">
+                            <td>
+                                <label>step:</label>
+                            </td>
+                            <td>
+                                <input type="text" class="input-sm form-control" value="{{process.sequence}}" readonly>
+                            </td>
+                            <td>
+                                <input type="text" class="input-sm form-control" value="{{process.name}}" readonly>
+                            </td>
+                            <td>
+                                <button type="button"
+                                        ng-click="removeWorkflowProcess(process)"
+                                        class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr ng-show="show">
+                            <td>
+                                <span translate="mycontractApp.workflow.process">Process</span>
+                            </td>
+                            <td>
+                                <select name="process" class="form-control" ng-model="addedProcess" ng-change="addProcess(addedProcess)" ng-controller="ProcessController" ng-options="process as process.name for process in processes ">
+                                    <option value="">Select Process</option>
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="workflow"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

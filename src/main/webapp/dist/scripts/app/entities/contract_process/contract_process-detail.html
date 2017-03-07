@@ -1,0 +1,55 @@
+
+<div>
+    <h2><span translate="mycontractApp.contract_process.detail.title">Contract_process</span> {{contract_process.id}}</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_process.sequence">Sequence</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_process.sequence}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_process.process">process</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_process.process.id}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_process.department">department</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_process.department.id}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_process.user">user</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_process.user.id}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="contract_process"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

@@ -1,0 +1,19 @@
+<table class="table">
+<tbody>
+<tr ng-repeat = "project in contract.projects">
+    <td>
+        <span translate="mycontractApp.contract.detail.project.name">Project</span>
+    </td>
+    <td>
+        <a ui-sref="project.detail({id:project.id})">
+        <input type="text" class="input-sm form-control" value="{{project.name}}" readonly></a>
+    </td>
+    <td>
+        <span translate="mycontractApp.contract.detail.project.manager">Manager</span>
+    </td>
+    <td>
+        <input type="text" class="input-sm form-control" value="{{project.manager}}" readonly>
+    </td>
+</tr>
+</tbody>
+</table>

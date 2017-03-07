@@ -1,0 +1,92 @@
+
+<div>
+    <h2><span translate="mycontractApp.contract_sample.detail.title">Contract_sample</span> {{contract_sample.id}}</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_sample.name">Name</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_sample.name}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_sample.description">Description</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_sample.description}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_sample.path">Path</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_sample.path}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_sample.file_name">File_name</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_sample.file_name}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_sample.uploaded_by">Uploaded_by</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_sample.uploaded_by}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_sample.uploaded_date_time">Uploaded_date_time</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_sample.uploaded_date_time}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_sample.modified_date_time">Modified_date_time</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_sample.modified_date_time}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract_sample.revision">Revision</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract_sample.revision}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="contract_sample"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+    <button type="button"
+            ng-click="previewFile()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.viewfile"> View File</span>
+    </button>
+</div>

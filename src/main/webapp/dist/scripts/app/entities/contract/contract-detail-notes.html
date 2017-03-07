@@ -1,0 +1,43 @@
+<div>
+    <div class="table-responsive" ng-show="contract_histories.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>user</th>
+                <th>note</th>
+                <th>AddedDatetime</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="history in contract_histories" ng-if="history.note != null">
+                <td>{{history.user.login}}</td>
+                <td>{{history.note}}</td>
+                <td>{{history.action_datetime}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-show="showComment">
+        <textarea id="commentArea" rows="4" cols="70" ng-model="addedComment" name="comment" focus-me="true" ng-maxlength="255"></textarea>
+    </div>
+    <div ng-show="showAddButton">
+    <button type="button"
+            ng-click="showCommentArea()"
+            class="btn">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<span translate="entity.action.add"> Add</span>
+    </button>
+    </div>
+    <div ng-show="showCancelSave">
+    <button type="button"
+            ng-click="cancelComment()"
+            class="btn">
+        <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel"> Cancel</span>
+    </button>
+    <button type="button"
+            ng-click="addComment()"
+            class="btn">
+        <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save"> Save</span>
+    </button>
+    </div>
+</div>
+

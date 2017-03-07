@@ -1,0 +1,58 @@
+
+<div>
+    <h2><span translate="mycontractApp.role.detail.title">Role</span> {{role.name}}</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.role.name">Name</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{role.name}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.role.description">Description</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{role.description}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th translate="mycontractApp.role.authorities">Role Authorities</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="authority in role.authorities">
+                                <td>
+                                    <span translate="mycontractApp.role.name">Name</span>
+                                </td>
+                                <td>
+                                    <input type="text" class="input-sm form-control" value="{{authority.name}}" readonly>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="role"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

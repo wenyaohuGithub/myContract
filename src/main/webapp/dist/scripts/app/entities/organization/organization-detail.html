@@ -1,0 +1,95 @@
+
+<div>
+    <h2><span translate="mycontractApp.organization.detail.title">Organization</span> {{organization.id}}</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.organization.name">Name</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{organization.name}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.organization.description">Description</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{organization.description}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.organization.active">Active</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{organization.active}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.organization.session_timeout">Session_timeout</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{organization.session_timeout}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.organization.smtp_enabled">Smtp_enabled</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{organization.smtp_enabled}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.organization.smtp_server_address">Smtp_server_address</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{organization.smtp_server_address}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.organization.smtp_username">Smtp_username</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{organization.smtp_username}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.organization.smtp_password">Smtp_password</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{organization.smtp_password}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.organization.smtp_port">Smtp_port</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{organization.smtp_port}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="organization"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>
