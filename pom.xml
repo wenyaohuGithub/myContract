@@ -498,6 +498,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            <!--
             <plugin>
                 <groupId>com.mysema.querydsl</groupId>
                 <artifactId>querydsl-maven-plugin</artifactId>
@@ -524,7 +525,7 @@
                     <packageName>com.hu.cm.domain</packageName>
                     <targetFolder>${project.basedir}/target/generated-sources/java</targetFolder>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>io.gatling</groupId>
                 <artifactId>gatling-maven-plugin</artifactId>
@@ -651,6 +652,19 @@
                     <changeLogFile>src/main/resources/config/liquibase/master.xml</changeLogFile>
                     <diffChangeLogFile>src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
                     <driver>org.postgresql.Driver</driver>
+                    <url>jdbc:postgresql://ec2-54-204-0-88.compute-1.amazonaws.com:5432/d2o6ms5r52i6uv</url>
+                    <defaultSchemaName />
+                    <username>xnineglgzlqbhk</username>
+                    <password>79695766438125fd94e8f65d2b478d52a2e1d1fabb0c95a6bc24e09ae8a9f134</password>
+                    <referenceUrl>hibernate:spring:com.hu.cm.domain?dialect=org.hibernate.dialect.PostgreSQL82Dialect</referenceUrl>
+                    <verbose>true</verbose>
+                    <logging>debug</logging>
+                </configuration>
+                <!-- local dev
+                <configuration>
+                    <changeLogFile>src/main/resources/config/liquibase/master.xml</changeLogFile>
+                    <diffChangeLogFile>src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
+                    <driver>org.postgresql.Driver</driver>
                     <url>jdbc:postgresql://localhost/mycontract</url>
                     <defaultSchemaName />
                     <username>mycontract</username>
@@ -658,7 +672,7 @@
                     <referenceUrl>hibernate:spring:com.hu.cm.domain?dialect=org.hibernate.dialect.PostgreSQL82Dialect</referenceUrl>
                     <verbose>true</verbose>
                     <logging>debug</logging>
-                </configuration>
+                </configuration>-->
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
