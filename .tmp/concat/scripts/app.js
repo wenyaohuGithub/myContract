@@ -54,8 +54,8 @@ angular.module('mycontractApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pas
 
         $rootScope.showElement = function(config){
             if(AuthServerProvider.getToken()){
-                if(AuthServerProvider.getToken().userDetails.account){
-                    var accountConfig = AuthServerProvider.getToken().userDetails.account.processConfiguration;
+                if(AuthServerProvider.getToken().account){
+                    var accountConfig = AuthServerProvider.getToken().account.processConfiguration;
                     if(config.indexOf(accountConfig) > -1){
                         return true;
                     } else {
@@ -7645,89 +7645,10 @@ angular.module('mycontractApp').run(['$templateCache', function($templateCache) 
 
 
   $templateCache.put('scripts/app/admin/department/departments.html',
-    "<div id=\"departments\">\n" +
-    "    <div class=\"container\">\n" +
-    "        <div class=\"row\">\n" +
-    "            <div class=\"col-sm-3\">\n" +
-    "                <h3 translate=\"mycontractApp.department.home.title\">Departments<</h3>\n" +
-    "            </div>\n" +
-    "            <div class=\"col-sm-3\">\n" +
-    "                <button class=\"btn btn-primary\" ui-sref=\"department.new\">\n" +
-    "                    <span class=\"glyphicon glyphicon-flash\"></span>\n" +
-    "                </button>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <div class=\"modal fade\" id=\"deleteDepartmentConfirmation\">\n" +
-    "        <div class=\"modal-dialog\">\n" +
-    "            <div class=\"modal-content\">\n" +
-    "                <form name=\"deleteForm\" ng-submit=\"confirmDelete(department.id)\">\n" +
-    "                    <div class=\"modal-header\">\n" +
-    "                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\"\n" +
-    "                                ng-click=\"clear()\">&times;</button>\n" +
-    "                        <h4 class=\"modal-title\" translate=\"entity.delete.title\">Confirm delete operation</h4>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"modal-body\">\n" +
-    "                        <p translate=\"mycontractApp.department.delete.question\" translate-values=\"{id: '{{department.id}}'}\">Are you sure you want to delete this Department?</p>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"modal-footer\">\n" +
-    "                        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" ng-click=\"clear()\">\n" +
-    "                            <span class=\"glyphicon glyphicon-ban-circle\"></span>&nbsp;<span translate=\"entity.action.cancel\">Cancel</span>\n" +
-    "                        </button>\n" +
-    "                        <button type=\"submit\" ng-disabled=\"deleteForm.$invalid\" class=\"btn btn-danger\">\n" +
-    "                            <span class=\"glyphicon glyphicon-remove-circle\"></span>&nbsp;<span translate=\"entity.action.delete\">Delete</span>\n" +
-    "                        </button>\n" +
-    "                    </div>\n" +
-    "                </form>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <div style=\"display: table-cell\">\n" +
-    "    <div class=\"table-responsive\">\n" +
-    "        <table class=\"table table-striped\">\n" +
-    "            <div class=\"row\">\n" +
-    "                <h5 class=\"col-sm-3\" translate=\"mycontractApp.department.name\">Name</h5>\n" +
-    "                <h5 class=\"col-sm-5\" translate=\"mycontractApp.department.description\">Description</h5>\n" +
-    "                <h5 class=\"col-sm-4\" translate=\"mycontractApp.department.parent\">Parent</h5>\n" +
-    "            </div>\n" +
-    "            <tbody style=\"display:block; overflow: auto; height: 400px\">\n" +
-    "                <tr ng-repeat=\"department in departments\" style=\"width:100%\">\n" +
-    "                    <td><a ui-sref=\"department.detail({id:department.id})\">{{department.name}}</a></td>\n" +
-    "                    <td>{{department.description}}</td>\n" +
-    "                    <td><a ui-sref=\"department.detail({id:department.parentDepartment.id})\">{{department.parentDepartment.name}}</a></td>\n" +
-    "                    <td>\n" +
-    "                        <button type=\"submit\"\n" +
-    "                                ng-click=\"delete(department.id)\"\n" +
-    "                                class=\"btn btn-danger btn-sm\">\n" +
-    "                            <span class=\"glyphicon glyphicon-trash\"></span>\n" +
-    "                        </button>\n" +
-    "                    </td>\n" +
-    "                </tr>\n" +
-    "            </tbody>\n" +
-    "        </table>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <nav>\n" +
-    "            <ul class=\"pagination\">\n" +
-    "                <li ng-show=\"links['first']\" ng-click=\"loadPage(links['first'])\"><a>&lt;&lt;</a></li>\n" +
-    "                <li ng-show=\"links['prev']\" ng-click=\"loadPage(links['prev'])\"><a>&lt;</a></li>\n" +
-    "                <li ng-show=\"page > 2\" ng-click=\"loadPage(page - 2)\"><a>{{page - 2}}</a></li>\n" +
-    "                <li ng-show=\"page > 1\" ng-click=\"loadPage(page - 1)\"><a>{{page - 1}}</a></li>\n" +
-    "                <li class=\"active\"><a>{{page}}</a></li>\n" +
-    "                <li ng-show=\"page < links['last']\" ng-click=\"loadPage(page + 1)\"><a>{{page + 1}}</a></li>\n" +
-    "                <li ng-show=\"page < links['last'] - 1\" ng-click=\"loadPage(page + 2)\"><a>{{page + 2}}</a></li>\n" +
-    "                <li ng-show=\"links['next']\" ng-click=\"loadPage(links['next'])\"><a>&gt;</a></li>\n" +
-    "                <li ng-show=\"links['last']\" ng-click=\"loadPage(links['last'])\"><a>&gt;&gt;</a></li>\n" +
-    "            </ul>\n" +
-    "        </nav>\n" +
-    "    </div>\n" +
-    "<!--\n" +
+    "<div id=departments> <div class=container> <div class=row> <div class=col-sm-3> <h3 translate=mycontractApp.department.home.title>Departments</h3> </div> <div class=col-sm-3> <button class=\"btn btn-primary\" ui-sref=department.new> <span class=\"glyphicon glyphicon-flash\"></span> </button> </div> </div> </div> <div class=\"modal fade\" id=deleteDepartmentConfirmation> <div class=modal-dialog> <div class=modal-content> <form name=deleteForm ng-submit=confirmDelete(department.id)> <div class=modal-header> <button type=button class=close data-dismiss=modal aria-hidden=true ng-click=clear()>&times;</button> <h4 class=modal-title translate=entity.delete.title>Confirm delete operation</h4> </div> <div class=modal-body> <p translate=mycontractApp.department.delete.question translate-values=\"{id: '{{department.id}}'}\">Are you sure you want to delete this Department?</p> </div> <div class=modal-footer> <button type=button class=\"btn btn-default\" data-dismiss=modal ng-click=clear()> <span class=\"glyphicon glyphicon-ban-circle\"></span>&nbsp;<span translate=entity.action.cancel>Cancel</span> </button> <button type=submit ng-disabled=deleteForm.$invalid class=\"btn btn-danger\"> <span class=\"glyphicon glyphicon-remove-circle\"></span>&nbsp;<span translate=entity.action.delete>Delete</span> </button> </div> </form> </div> </div> </div> <div style=\"display: table-cell\"> <div class=table-responsive> <table class=\"table table-striped\"> <div class=row> <h5 class=col-sm-3 translate=mycontractApp.department.name>Name</h5> <h5 class=col-sm-5 translate=mycontractApp.department.description>Description</h5> <h5 class=col-sm-4 translate=mycontractApp.department.parent>Parent</h5> </div> <tbody style=\"display:block; overflow: auto; height: 400px\"> <tr ng-repeat=\"department in departments\" style=width:100%> <td><a ui-sref=department.detail({id:department.id})>{{department.name}}</a></td> <td>{{department.description}}</td> <td><a ui-sref=department.detail({id:department.parentDepartment.id})>{{department.parentDepartment.name}}</a></td> <td> <button type=submit ng-click=delete(department.id) class=\"btn btn-danger btn-sm\"> <span class=\"glyphicon glyphicon-trash\"></span> </button> </td> </tr> </tbody> </table> </div> <nav> <ul class=pagination> <li ng-show=\"links['first']\" ng-click=\"loadPage(links['first'])\"><a>&lt;&lt;</a></li> <li ng-show=\"links['prev']\" ng-click=\"loadPage(links['prev'])\"><a>&lt;</a></li> <li ng-show=\"page > 2\" ng-click=\"loadPage(page - 2)\"><a>{{page - 2}}</a></li> <li ng-show=\"page > 1\" ng-click=\"loadPage(page - 1)\"><a>{{page - 1}}</a></li> <li class=active><a>{{page}}</a></li> <li ng-show=\"page < links['last']\" ng-click=\"loadPage(page + 1)\"><a>{{page + 1}}</a></li> <li ng-show=\"page < links['last'] - 1\" ng-click=\"loadPage(page + 2)\"><a>{{page + 2}}</a></li> <li ng-show=\"links['next']\" ng-click=\"loadPage(links['next'])\"><a>&gt;</a></li> <li ng-show=\"links['last']\" ng-click=\"loadPage(links['last'])\"><a>&gt;&gt;</a></li> </ul> </nav> </div> <!--\n" +
     "        <div style=\"display: table-cell\">\n" +
     "            something goes here for detail info\n" +
-    "        </div>-->\n" +
-    "</div>\n"
+    "        </div>--> </div>"
   );
 
 
