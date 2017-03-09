@@ -2,11 +2,14 @@ package com.hu.cm.security.xauth;
 
 import com.hu.cm.domain.admin.Account;
 import com.hu.cm.web.rest.admin.LoginUser;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.codec.Hex;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Set;
 
 public class TokenProvider {
 
@@ -21,7 +24,7 @@ public class TokenProvider {
     public Token createToken(LoginUser userDetails) {
         long expires = System.currentTimeMillis() + 1000L * tokenValidity;
         String tokenString = userDetails.getUsername() + ":" + expires + ":" + computeSignature(userDetails, expires);
-        Token token = new Token(tokenString, expires, userDetails);
+        Token token = new Token(tokenString, expires, userDetails.getAccount(), userDetails.getUsername(), (Set<GrantedAuthority>) userDetails.getAuthorities());
         TokenManager.addToken(token);
         return token;
     }

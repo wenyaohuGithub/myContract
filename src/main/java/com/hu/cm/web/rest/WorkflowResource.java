@@ -55,8 +55,8 @@ public class WorkflowResource {
         if (workflow.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new workflow cannot already have an ID").body(null);
         }
-        LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
-        Long accountId = user.getAccount().getId();
+        //LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
+        Long accountId = TokenManager.getCurrentToken().getAccount().getId();
         if(accountId == null){
             log.error("create: Account id missing");
             return new ResponseEntity<>(null, null, HttpStatus.BAD_REQUEST);
@@ -92,8 +92,8 @@ public class WorkflowResource {
     @Timed
     public ResponseEntity<List<Workflow>>getAll() {
         log.debug("REST request to get all Workflows");
-        LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
-        Long accountId = user.getAccount().getId();
+        //LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
+        Long accountId = TokenManager.getCurrentToken().getAccount().getId();
         if(accountId == null){
             log.error("getAll(): Account id missing");
             return new ResponseEntity<>(null, null, HttpStatus.BAD_REQUEST);

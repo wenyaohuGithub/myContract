@@ -103,8 +103,8 @@ public class ContractResource {
         if (dto.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new contract cannot already have an ID").body(null);
         }
-        LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
-        Long accountId = user.getAccount().getId();
+        //LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
+        Long accountId = TokenManager.getCurrentToken().getAccount().getId();
         if(accountId == null){
             log.error("create: Account id missing");
             return new ResponseEntity<>(null, null, HttpStatus.BAD_REQUEST);
@@ -224,20 +224,20 @@ public class ContractResource {
     public ResponseEntity<List<ContractDTO>> getAll(@RequestParam(value = "page" , required = false) Integer offset,
                                   @RequestParam(value = "per_page", required = false) Integer limit)
         throws URISyntaxException {
-        LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
-        Long accountId = user.getAccount().getId();
+        //LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
+        Long accountId = TokenManager.getCurrentToken().getAccount().getId();
         if(accountId == null){
             log.error("getAll(): Account id missing");
             return new ResponseEntity<>(null, null, HttpStatus.BAD_REQUEST);
         }
-        User u = userRepository.findByIdAndFetchUserAccountByLogin(user.getUsername());
+        User user = userRepository.findByIdAndFetchUserAccountByLogin(TokenManager.getCurrentToken().getUserName());
         Page<Contract> page = null;
-        if(user.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_EXECUTIVE"))){
+        if(TokenManager.getCurrentToken().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_EXECUTIVE"))){
             page = contractRepository.findAllForAccount(PaginationUtil.generatePageRequest(offset, limit), accountId);
-        }else if(user.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_DEPT_HEAD"))){
-            page = contractRepository.findAllForDepartment(PaginationUtil.generatePageRequest(offset, limit), accountId, u.getDepartmentId());
+        }else if(TokenManager.getCurrentToken().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_DEPT_HEAD"))){
+            page = contractRepository.findAllForDepartment(PaginationUtil.generatePageRequest(offset, limit), accountId, user.getDepartmentId());
         }else {
-            page = contractRepository.findAllForUser(PaginationUtil.generatePageRequest(offset, limit), accountId, u.getId());
+            page = contractRepository.findAllForUser(PaginationUtil.generatePageRequest(offset, limit), accountId, user.getId());
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/contracts", offset, limit);
 
@@ -271,8 +271,8 @@ public class ContractResource {
                                                     @RequestParam(value = "search") String searchString)
             throws URISyntaxException {
         log.debug("REST request to search Contract : {}", searchString);
-        LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
-        Long accountId = user.getAccount().getId();
+        //LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
+        Long accountId = TokenManager.getCurrentToken().getAccount().getId();
         if(accountId == null){
             log.error("search(): Account id missing");
             return new ResponseEntity<>(null, null, HttpStatus.BAD_REQUEST);
@@ -310,8 +310,8 @@ public class ContractResource {
     public ResponseEntity<Map<String, Double>> getSumByMonth()
             throws URISyntaxException {
         log.debug("REST request to get contracts statistics sum by month");
-        LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
-        Long accountId = user.getAccount().getId();
+        //LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
+        Long accountId = TokenManager.getCurrentToken().getAccount().getId();
         if(accountId == null){
             log.error("search(): Account id missing");
             return new ResponseEntity<>(null, null, HttpStatus.BAD_REQUEST);

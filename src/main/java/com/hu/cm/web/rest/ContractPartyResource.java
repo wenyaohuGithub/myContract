@@ -54,8 +54,8 @@ public class ContractPartyResource {
             return ResponseEntity.badRequest().header("Failure", "A new contract_party cannot already have an ID").body(null);
         }
 
-        LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
-        Long accountId = user.getAccount().getId();
+        //LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
+        Long accountId = TokenManager.getCurrentToken().getAccount().getId();
         if(accountId == null){
             log.error("create: Account id missing");
             return new ResponseEntity<>(null, null, HttpStatus.BAD_REQUEST);
@@ -92,8 +92,8 @@ public class ContractPartyResource {
     public ResponseEntity<List<ContractPartyDTO>> getAll(@RequestParam(value = "page" , required = false) Integer offset,
                                                          @RequestParam(value = "per_page", required = false) Integer limit)
         throws URISyntaxException {
-        LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
-        Long accountId = user.getAccount().getId();
+        //LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
+        Long accountId = TokenManager.getCurrentToken().getAccount().getId();
         if(accountId == null){
             log.error("getAll(): Account id missing");
             return new ResponseEntity<>(null, null, HttpStatus.BAD_REQUEST);

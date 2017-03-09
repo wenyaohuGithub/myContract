@@ -45,8 +45,8 @@ public class TaskResource {
         if (task.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new task cannot already have an ID").body(null);
         }
-        LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
-        Long accountId = user.getAccount().getId();
+        //LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
+        Long accountId = TokenManager.getCurrentToken().getAccount().getId();
         if(accountId == null){
             log.error("create: Account id missing");
             return new ResponseEntity<>(null, null, HttpStatus.BAD_REQUEST);
@@ -81,8 +81,8 @@ public class TaskResource {
     @Timed
     public ResponseEntity<List<TaskDTO>> getAll() {
         log.debug("REST request to get all Tasks");
-        LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
-        Long accountId = user.getAccount().getId();
+        //LoginUser user = (LoginUser)TokenManager.getCurrentToken().getUserDetails();
+        Long accountId = TokenManager.getCurrentToken().getAccount().getId();
         if(accountId == null){
             log.error("getAll(): Account id missing");
             return new ResponseEntity<>(null, null, HttpStatus.BAD_REQUEST);

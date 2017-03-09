@@ -54,8 +54,8 @@ angular.module('mycontractApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pas
 
         $rootScope.showElement = function(config){
             if(AuthServerProvider.getToken()){
-                if(AuthServerProvider.getToken().userDetails.account){
-                    var accountConfig = AuthServerProvider.getToken().userDetails.account.processConfiguration;
+                if(AuthServerProvider.getToken().account){
+                    var accountConfig = AuthServerProvider.getToken().account.processConfiguration;
                     if(config.indexOf(accountConfig) > -1){
                         return true;
                     } else {
