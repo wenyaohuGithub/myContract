@@ -32,6 +32,7 @@ angular.module('mycontractApp').controller('ContractDetailAttachmentsController'
         var onUploadFinished = function(result){
             if(result.status == 'done'){
                 $scope.load($scope.contract.id);
+                $scope.clear();
             } else if(result.status = 'error'){
                 console.log("error");
             }
@@ -77,4 +78,27 @@ angular.module('mycontractApp').controller('ContractDetailAttachmentsController'
             $scope.uploadedFile = files[0];
             $scope.$apply();
         };
+
+        $scope.deleteContractAttachment = function (attachId) {
+            Contract.deleteContractAttachment($scope.contract.id, attachId,
+                function(result){
+                    $scope.load($scope.contract.id);
+                });
+        };
+
+        $scope.downloadAttachment = function(id, filePath){
+            Contract.downloadAttachment(id,
+                function(result){
+                    var file = null;
+                    if(filePath.toLowerCase().endsWith('pdf')){
+                        file = new Blob([result], { type: 'application/pdf' });
+                    } else if(filePath.toLowerCase().endsWith('doc')){
+                        file = new Blob([result], { type: 'application/doc' });
+                    } else {
+                        file = new Blob([result], { type: 'application/txt' });
+                    }
+
+                    window.open(URL.createObjectURL(file));
+                });
+        }
 }]);

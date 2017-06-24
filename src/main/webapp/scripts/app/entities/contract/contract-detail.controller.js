@@ -59,9 +59,9 @@ angular.module('mycontractApp')
             Contract.download($scope.contract.id,
                 function(result){
                     var file = null;
-                    if($scope.contract.contractFilePath.endsWith('pdf')){
+                    if($scope.contract.contractFilePath.toLowerCase().endsWith('pdf')){
                         file = new Blob([result], { type: 'application/pdf' });
-                    } else if($scope.contract.contractFilePath.endsWith('doc')){
+                    } else if($scope.contract.contractFilePath.toLowerCase().endsWith('doc')){
                         file = new Blob([result], { type: 'application/doc' });
                     } else {
                         file = new Blob([result], { type: 'application/txt' });

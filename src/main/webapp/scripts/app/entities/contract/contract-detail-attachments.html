@@ -4,7 +4,16 @@
             <tbody>
             <tr ng-repeat="contract_attachment in contract_attachments">
                 <td>{{contract_attachment.filePath}}</td>
-                <td>{{contract_attachment.uploadDatetime}}</td>
+                <td>
+                    <button type="submit" ng-click="downloadAttachment(contract_attachment.id, contract_attachment.filePath)" class="btn btn-info">
+                        <span translate="mycontractApp.contract.attachments.view">View Attachment File</span>
+                    </button>
+                </td>
+                <td>
+                    <button type="submit" ng-click="deleteContractAttachment(contract_attachment.id)" class="btn btn-info">
+                        <span translate="mycontractApp.contract.attachments.delete">Delete Attachment File</span>
+                    </button>
+                </td>
             </tr>
             </tbody>
         </table>

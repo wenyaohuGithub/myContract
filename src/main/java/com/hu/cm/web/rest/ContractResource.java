@@ -461,7 +461,9 @@ public class ContractResource {
             List<AttachmentDTO> attachments = new ArrayList<AttachmentDTO>();
             for(Attachment a : c.getAttachments()){
                 AttachmentDTO dto = new AttachmentDTO(a.getId());
-                dto.setFilePath(a.getFilePath());
+                if(a.getFilePath() != null) {
+                    dto.setFilePath(a.getFilePath().substring(a.getFilePath().lastIndexOf("/")+1));
+                }
                 dto.setUploadDatetime(a.getUploadDatetime().toString());
                 attachments.add(dto);
             }
@@ -537,6 +539,7 @@ public class ContractResource {
     }
 
     @RequestMapping(value="/contracts/{id}/file", method=RequestMethod.DELETE)
+    @Timed
     public ResponseEntity deleteContractFile(@PathVariable Long id) throws IOException
     {
         log.info("deleting contract " + id +  " file ");
@@ -562,7 +565,40 @@ public class ContractResource {
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
+    @RequestMapping(value="/contracts/{id}/attachments/{attachId}", method=RequestMethod.DELETE)
+    @Timed
+    public ResponseEntity deleteContractAttachment(@PathVariable Long id, @PathVariable Long attachId) throws IOException
+    {
+        log.info("deleting contract " + id +  " attachment " + attachId);
+        Contract c = contractRepository.findOne(id);
+        if (c == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
+        Attachment a = attachmentRepository.findOne(attachId);
+        if (a == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
+        File attachmentFile = new File(a.getFilePath());
+        if(!attachmentFile.exists()){
+            log.info("Attachment file " + a.getFilePath() + " does not exist");
+        } else {
+            if(attachmentFile.delete()){
+                log.info("Contract attachment file " + a.getFilePath() + " deleted");
+            } else {
+                log.info("Contract attachment file " + a.getFilePath() + " not deleted");
+            }
+        }
+
+        attachmentRepository.delete(a);
+        contractRepository.save(c);
+
+        return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
+
     @RequestMapping(value="/contracts/download/{id}", method=RequestMethod.GET)
+    @Timed
     public ResponseEntity<byte[]> downloadFile(@PathVariable Long id) throws IOException
     {
         log.info("downloading contract " + id +  " ... ");
@@ -584,6 +620,38 @@ public class ContractResource {
         if(c.getContractFilePath().endsWith("pdf")) {
             header.set("Content-Type", "application/pdf");
         }else if (c.getContractFilePath().endsWith("doc")){
+            header.set("Content-Type", "application/doc");
+        }else {
+            header.set("Content-Type", "application/txt");
+        }
+        header.setContentLength(file.length);
+
+        return new ResponseEntity<byte[]>(file, header, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/contracts/attachments/download/{id}", method=RequestMethod.GET)
+    @Timed
+    public ResponseEntity<byte[]> downloadAttachment(@PathVariable Long id) throws IOException
+    {
+        log.info("downloading contract attachment " + id +  " ... ");
+        Attachment a = attachmentRepository.findOne(id);
+        if (a == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
+        File attachmentFile = new File(a.getFilePath());
+        if(!attachmentFile.exists()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
+        String filePathName = attachmentFile.getAbsolutePath();
+        InputStream is = new FileInputStream(filePathName);
+
+        byte[] file = IOUtils.toByteArray(is);
+        HttpHeaders header = new HttpHeaders();
+        if(a.getFilePath().endsWith("pdf")) {
+            header.set("Content-Type", "application/pdf");
+        }else if (a.getFilePath().endsWith("doc")){
             header.set("Content-Type", "application/doc");
         }else {
             header.set("Content-Type", "application/txt");

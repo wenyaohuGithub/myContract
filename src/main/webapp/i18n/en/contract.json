@@ -85,6 +85,10 @@
             "content": {
                 "label": "Content",
                 "select": "Select File"
+            },
+            "attachments":{
+                "view": "View Attachment",
+                "delete": "Delete Attachment"
             }
         }
     }

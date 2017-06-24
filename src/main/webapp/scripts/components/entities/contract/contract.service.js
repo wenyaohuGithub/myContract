@@ -85,6 +85,12 @@ angular.module('mycontractApp')
             },
             deleteContractFile:function(id, callback){
                 $http.delete('api/contracts/'+id+'/file').success(callback);
+            },
+            deleteContractAttachment:function(id, attachId, callback){
+                $http.delete('api/contracts/'+id+'/attachments/'+attachId).success(callback);
+            },
+            downloadAttachment: function(id, callback) {
+                $http.get('api/contracts/attachments/download/'+id, { responseType: 'arraybuffer' }).success(callback);
             }
         }
     });

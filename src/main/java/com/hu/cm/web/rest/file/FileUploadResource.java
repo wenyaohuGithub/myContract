@@ -10,6 +10,7 @@ import com.hu.cm.repository.ContractRepository;
 import com.hu.cm.repository.configuration.Contract_sampleRepository;
 import com.hu.cm.repository.admin.UserRepository;
 import com.hu.cm.security.SecurityUtils;
+import com.hu.cm.service.ContractService;
 import com.hu.cm.service.util.PDFFileUtil;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -65,8 +66,9 @@ public class FileUploadResource {
         File directory = null;
         String newFileName = null;
         Contract c = null;
-        Attachment a = null;
         ContractSample s = null;
+        Attachment a = null;
+
         if(type.equals("ContractSample")){
             s = contract_sampleRepository.findOne(id);
             if(s==null) {
@@ -82,12 +84,17 @@ public class FileUploadResource {
             directory  = new File("contractFiles/"+id.toString());
             newFileName = "C_"+file.getOriginalFilename();
         } else if (type.equals("ContractAttachment")){
-            a = attachmentRepository.findOne(id);
-            if(a==null) {
-                return ResponseEntity.badRequest().header("Failure", "Contract Attachment not found").body("{\"status\": \"error\"}");
+            c = contractRepository.findOne(id);
+            if(c == null) {
+                return ResponseEntity.badRequest().header("Failure", "Contract not found").body("{\"status\": \"error\"}");
             }
             directory  = new File("contractFiles/"+id.toString());
             newFileName = "A_"+file.getOriginalFilename();
+
+            a = new Attachment();
+            a.setContract(c);
+            a.setUploadDatetime(new DateTime());
+            attachmentRepository.save(a);
         } else {
 
         }

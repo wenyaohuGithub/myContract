@@ -89,6 +89,10 @@
             "status":{
                 "title": "状态",
                 "drafting": ""
+            },
+            "attachments":{
+                "view": "浏览附件",
+                "delete": "删除附件"
             }
         }
     }
