@@ -2,9 +2,11 @@ package com.hu.cm.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.hu.cm.domain.ContractHistory;
+import com.hu.cm.domain.admin.Account;
 import com.hu.cm.repository.ContractHistoryRepository;
 import com.hu.cm.repository.ContractRepository;
 import com.hu.cm.repository.TaskRepository;
+import com.hu.cm.repository.admin.AccountRepository;
 import com.hu.cm.repository.admin.UserRepository;
 import com.hu.cm.security.SecurityUtils;
 import com.hu.cm.security.xauth.TokenManager;
@@ -52,6 +54,9 @@ public class ContractHistoryResource {
     @Inject
     private UserRepository userRepository;
 
+    @Inject
+    private AccountRepository accountRepository;
+
     /**
      * POST  /contract_historys -> Create a new contract_history.
      */
@@ -89,7 +94,7 @@ public class ContractHistoryResource {
 
     /**
      * GET  /contract_historys -> get all the contract_historys.
-
+     */
     @RequestMapping(value = "/contract_histories",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -99,21 +104,21 @@ public class ContractHistoryResource {
                                                            @RequestParam(value = "per_page", required = false) Integer limit,
                                                            @RequestParam(value = "contractId", required = false) Long contractId)
         throws URISyntaxException {
-        Long accountId = TokenManager.getCurrentToken().getAccountId();
+        Long accountId = TokenManager.getCurrentToken().getAccount().getId();
         if(accountId == null){
-            log.error("getAll(): Account id missing");
+            log.error("create: Account id missing");
             return new ResponseEntity<>(null, null, HttpStatus.BAD_REQUEST);
         }
+        Account account = accountRepository.findOne(accountId);
 
         Page<ContractHistory> page = null;
         HttpHeaders headers = null;
         List<ContractHistory> contractHistories = null;
         if(contractId == null) {
-            page = contract_historyRepository.findAllForAccount(PaginationUtil.generatePageRequest(offset, limit), accountId);
-            headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/contract_histories", offset, limit);
-            contractHistories = page.getContent();
+            log.error("contract with id " + contractId + " not found");
+            return new ResponseEntity<>(null, headers, HttpStatus.NOT_FOUND);
         } else {
-            contractHistories = contract_historyRepository.findAllForContract(contractId, accountId);
+            contractHistories = contract_historyRepository.findAllForContract(contractId);
         }
 
         List<ContractHistoryDTO> results = new ArrayList<>();
@@ -123,7 +128,7 @@ public class ContractHistoryResource {
         }
         return new ResponseEntity<>(results, headers, HttpStatus.OK);
     }
-*/
+
     /**
      * GET  /contract_historys/:id -> get the "id" contract_history.
      */

@@ -2,40 +2,94 @@
     "mycontractApp": {
         "contract" : {
             "home": {
-                "title": "Contracts",
-                "createLabel": "Create a new Contract",
-                "createOrEditLabel": "Create or edit a Contract"
+                "title": "合同列表",
+                "createLabel": "建立一个新合同",
+                "createOrEditLabel": "建立或修改合同",
+                "create": "建立新合同"
             },
             "delete": {
-                "question": "Are you sure you want to delete Contract {{ id }}?"
+                "question": "确认删除合同 {{ id }}?"
             },
             "detail": {
-                "title": "Contract"
+                "title": "合同",
+                "project.name": "项目",
+                "project.manager": "经理",
+                "edit": "修改",
+                "print": "打印",
+                "view": "浏览合同文本",
+                "upload": "上传合同文本",
+                "delete": "删除合同文本",
+                "confirmDelete": "确认删除合同文本?",
+                "confirmUpload": "确认上传合同文本?",
+                "approve": "批准",
+                "reject": "否决",
+                "archive": "归档",
+                "completeAndSubmit": "完成并提交给: {{nextProcess}}",
+                "noteReminder": "请填写你的意见",
+                "info": "具体信息",
+                "notes": "处理意见",
+                "attachments": "合同附件"
             },
-            "name": "Name",
-            "review_identifier": "Review_identifier",
-            "contract_identifier": "Contract_identifier",
-            "contracting_method": "ContractingMethod",
-            "amount": "Amount",
-            "amount_written": "Amount_written",
-            "currency": "Currency",
-            "amount_current_year": "Amount_current_year",
-            "submit_date": "Submit_date",
-            "start_date": "Start_date",
-            "end_date": "End_date",
-            "expire_date": "Expire_date",
-            "is_multi_year": "Is_multi_year",
-            "status": "Status",
-            "state": "State",
-            "approve_date": "Approve_date",
-            "sign_date": "Sign_date",
-            "archive_date": "Archive_date",
-            "contract_party": "contract_party",
-            "executing_department": "executing_department",
-            "category": "category",
-            "fund_source": "fund_source",
-            "contract_sample": "contract_sample",
-            "related_department": "related_department"
+            "messages":{
+                "validate": {
+                    "namerequired": "请填写合同名称."
+                }
+            },
+            "submitToNextProcess":{
+                "title": "提交给下一步骤",
+                "question": "确认提交给下一步骤 {{nextProcess}}?"
+            },
+            "rejectProcess":{
+                "title": "不批准当前合同",
+                "question": "确认退回重新起草?"
+            },
+            "approveProcess":{
+                "title": "批准",
+                "question": "确认批准?"
+            },
+            "statistics":{
+                "title": "合同统计信息"
+            },
+            "attachment":{
+                "select": "选择文件"
+            },
+            "name": "名称",
+            "description": "具体信息",
+            "review_identifier": "审核号码",
+            "contract_identifier": "合同号码",
+            "contracting_method": "合同方式",
+            "amount": "金额",
+            "amount_written": "大写金额",
+            "currency": "货币种类",
+            "amount_current_year": "当年金额",
+            "submit_date": "提交日期",
+            "created_date": "创建日期",
+            "start_date": "开始日期",
+            "end_date": "结束日期",
+            "expire_date": "失效日期",
+            "is_multi_year": "是否跨年合同",
+            "status": "状态",
+            "state": "状态",
+            "approve_date": "批准日期",
+            "sign_date": "签字日期",
+            "archive_date": "归档日期",
+            "contract_party": "合同主体",
+            "administrator": "承办人",
+            "administrative_department": "承办部门",
+            "category": "类别",
+            "fund_source": "资金来源",
+            "contract_sample": "合同范本",
+            "related_department": "相关部门",
+            "project": "项目",
+            "file": "合同文本",
+            "content": {
+                "label": "内容",
+                "select": "选择合同文本"
+            },
+            "status":{
+                "title": "状态",
+                "drafting": ""
+            }
         }
     }
 }

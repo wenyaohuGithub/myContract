@@ -5,9 +5,8 @@ import com.hu.cm.domain.*;
 import com.hu.cm.domain.admin.Account;
 import com.hu.cm.domain.admin.Department;
 import com.hu.cm.domain.admin.User;
-import com.hu.cm.domain.configuration.Process;
+import com.hu.cm.domain.configuration.ContractSample;
 import com.hu.cm.domain.enumeration.ContractStatus;
-import com.hu.cm.domain.enumeration.UserAction;
 import com.hu.cm.repository.*;
 import com.hu.cm.repository.admin.AccountRepository;
 import com.hu.cm.repository.admin.DepartmentRepository;
@@ -19,28 +18,25 @@ import com.hu.cm.service.ContractSearchService;
 import com.hu.cm.service.ContractService;
 import com.hu.cm.service.ProcessService;
 import com.hu.cm.service.TaskService;
-import com.hu.cm.web.rest.admin.LoginUser;
 import com.hu.cm.web.rest.dto.*;
 import com.hu.cm.web.rest.util.PaginationUtil;
+import org.apache.commons.io.IOUtils;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.propertyeditors.ClassArrayEditor;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
+import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.Timestamp;
 import java.util.*;
 
 /**
@@ -58,6 +54,7 @@ public class ContractResource {
 
     @Inject
     private AccountRepository accountRepository;
+
     @Inject
     private DepartmentRepository departmentRepository;
 
@@ -80,9 +77,6 @@ public class ContractResource {
     ContractHistoryRepository contractHistoryRepository;
 
     @Inject
-    private ProcessService processService;
-
-    @Inject
     private ContractService contractService;
 
     @Inject
@@ -90,6 +84,9 @@ public class ContractResource {
 
     @Inject
     private ContractSearchService contractSearchService;
+
+    @Inject
+    private AttachmentRepository attachmentRepository;
 
     /**
      * POST  /contracts -> Create a new contract.
@@ -118,8 +115,65 @@ public class ContractResource {
         ContractDTO returnedDto = new ContractDTO();
         returnedDto.setId(result.getId());
         returnedDto.setName(result.getName());
+
         return ResponseEntity.created(new URI("/api/contracts/" + contract.getId())).body(returnedDto);
     }
+
+    /**
+     * POST  /contracts -> Create a new contract attachment.
+     */
+    @RequestMapping(value = "/contracts/{id}/attachments",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<AttachmentDTO> createAttachment(@PathVariable Long id, MultipartFile file) throws URISyntaxException {
+        log.debug("REST request to create Attachment : {}", file.getOriginalFilename());
+
+        Long accountId = TokenManager.getCurrentToken().getAccount().getId();
+        if(accountId == null){
+            log.error("create: Account id missing");
+            return new ResponseEntity<>(null, null, HttpStatus.BAD_REQUEST);
+        }
+
+        Contract contract = contractRepository.findOne(id);
+
+        if(contract == null){
+            return ResponseEntity.badRequest().header("Failure", "Contract with id " + id + " not found").body(null);
+        }
+
+        String filename = file.getOriginalFilename();
+
+        if (!file.isEmpty()) {
+            try {
+                File directory = new File("contractFiles");
+                if(!directory.exists() || !directory.isDirectory()){
+                    if (!directory.mkdir()) {
+                        return ResponseEntity.badRequest().header("Failure", "Directory doesn't not exist, and dan't being created").body(null);
+                    }
+                }
+                byte[] bytes = file.getBytes();
+                BufferedOutputStream stream =
+                        new BufferedOutputStream(new FileOutputStream(new File(directory + "/" +filename)));
+                stream.write(bytes);
+                stream.close();
+                Attachment attachment = new Attachment();
+                attachment.setFilePath(directory.getPath()+"/"+filename);
+                attachment.setContract(contract);
+                attachment.setUploadDatetime(new DateTime());
+                Attachment result = contractService.createContractAttachment(attachment);
+
+                AttachmentDTO returnedDto = new AttachmentDTO(result.getId());
+                returnedDto.setFilePath(result.getFilePath());
+                returnedDto.setUploadDatetime(result.getUploadDatetime().toString());
+                return ResponseEntity.created(new URI("/api/contracts/"+id+"/attachments")).body(returnedDto);
+            } catch (Exception e) {
+                return ResponseEntity.badRequest().header("Failure", "File upload failed").body(null);
+            }
+        } else {
+            return ResponseEntity.badRequest().header("Failure", "Uploaded file is empty").body(null);
+        }
+    }
+
 
     /**
      * PUT  /contracts -> Updates an existing contract.
@@ -128,13 +182,19 @@ public class ContractResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Contract> update(@Valid @RequestBody Contract contract) throws URISyntaxException {
-        log.debug("REST request to update Contract : {}", contract);
+    public ResponseEntity<ContractDTO> update(@Valid @RequestBody Contract contract) throws URISyntaxException {
+        log.debug("REST request to update Contract : {}", contract.getId());
         if (contract.getId() == null) {
             return null;//create(contract);
         }
-        Contract result = contractRepository.save(contract);
-        return ResponseEntity.ok().body(result);
+        Contract c = contractRepository.findByIdAndFetchEager(contract.getId());
+        c.setName(contract.getName());
+        c.setAmount(contract.getAmount());
+        c.setContent(contract.getContent());
+        c.setContractParty(contract.getContractParty());
+        Contract result = contractRepository.save(c);
+        ContractDTO dto = map(result);
+        return ResponseEntity.ok().body(dto);
     }
 
     /**
@@ -382,6 +442,59 @@ public class ContractResource {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
+    /**
+     * GET  /contracts/{id}/attachments -> get all the contracts attachments.
+     */
+    @RequestMapping(value = "/contracts/{id}/attachments",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<AttachmentDTO>> getAllAttachments(@PathVariable Long id)
+            throws URISyntaxException {
+        Long accountId = TokenManager.getCurrentToken().getAccount().getId();
+        if(accountId == null){
+            log.error("getAll(): Account id missing");
+            return new ResponseEntity<>(null, null, HttpStatus.BAD_REQUEST);
+        }
+        Contract c = contractRepository.findByIdAndFetchAttachments(id);
+        if (c != null){
+            List<AttachmentDTO> attachments = new ArrayList<AttachmentDTO>();
+            for(Attachment a : c.getAttachments()){
+                AttachmentDTO dto = new AttachmentDTO(a.getId());
+                dto.setFilePath(a.getFilePath());
+                dto.setUploadDatetime(a.getUploadDatetime().toString());
+                attachments.add(dto);
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(attachments);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    /**
+     * GET  /contracts/attachments/{id} -> get an attachment.
+     */
+    @RequestMapping(value = "/contracts/attachments/{id}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<AttachmentDTO> getAttachment(@PathVariable Long id)
+            throws URISyntaxException {
+        Long accountId = TokenManager.getCurrentToken().getAccount().getId();
+        if(accountId == null){
+            log.error("getAll(): Account id missing");
+            return new ResponseEntity<>(null, null, HttpStatus.BAD_REQUEST);
+        }
+        Attachment a = attachmentRepository.findOne(id);
+        if (a != null){
+            AttachmentDTO dto = new AttachmentDTO(a.getId());
+            dto.setFilePath(a.getFilePath());
+            dto.setUploadDatetime(a.getUploadDatetime().toString());
+            return ResponseEntity.status(HttpStatus.OK).body(dto);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
 
     /**
      * DELETE  /contracts/:id -> delete the "id" contract.
@@ -423,6 +536,62 @@ public class ContractResource {
         }
     }
 
+    @RequestMapping(value="/contracts/{id}/file", method=RequestMethod.DELETE)
+    public ResponseEntity deleteContractFile(@PathVariable Long id) throws IOException
+    {
+        log.info("deleting contract " + id +  " file ");
+        Contract c = contractRepository.findOne(id);
+        if (c == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
+        File contractFile = new File(c.getContractFilePath());
+        if(!contractFile.exists()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
+        if(contractFile.delete()){
+            log.info("Contract file " + c.getContractFilePath() + " deleted");
+            c.setContractFilePath(null);
+            contractRepository.save(c);
+        } else {
+            log.info("Contract file " + c.getContractFilePath() + " not deleted");
+            return ResponseEntity.status(HttpStatus.FAILED_DEPENDENCY).body(null);
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
+
+    @RequestMapping(value="/contracts/download/{id}", method=RequestMethod.GET)
+    public ResponseEntity<byte[]> downloadFile(@PathVariable Long id) throws IOException
+    {
+        log.info("downloading contract " + id +  " ... ");
+        Contract c = contractRepository.findOne(id);
+        if (c == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
+        File contractFile = new File(c.getContractFilePath());
+        if(!contractFile.exists()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
+        String filePathName = contractFile.getAbsolutePath();
+        InputStream is = new FileInputStream(filePathName);
+
+        byte[] file = IOUtils.toByteArray(is);
+        HttpHeaders header = new HttpHeaders();
+        if(c.getContractFilePath().endsWith("pdf")) {
+            header.set("Content-Type", "application/pdf");
+        }else if (c.getContractFilePath().endsWith("doc")){
+            header.set("Content-Type", "application/doc");
+        }else {
+            header.set("Content-Type", "application/txt");
+        }
+        header.setContentLength(file.length);
+
+        return new ResponseEntity<byte[]>(file, header, HttpStatus.OK);
+    }
 
     /* below are internal methods to map data object */
     private ContractDTO map(Contract contract){
@@ -452,6 +621,11 @@ public class ContractResource {
         dto.setCreatedDate(contract.getCreatedDate() == null ? null : contract.getCreatedDate().toString());
         dto.setAssignee(contract.getAssignee());
         dto.setModifiedBy(contract.getModifiedBy());
+        dto.setContent(contract.getContent());
+        //Strip file path, just send file name
+        if(contract.getContractFilePath() != null) {
+            dto.setContractFilePath(contract.getContractFilePath().substring(contract.getContractFilePath().lastIndexOf("/") + 1));
+        }
 
         if(contract.getCurrentTask() != null){
             TaskDTO taskDTO = new TaskDTO(contract.getCurrentTask().getId());
@@ -528,6 +702,7 @@ public class ContractResource {
         contract.setFundSource(dto.getFundSource());
         contract.setIsMultiYear(dto.getIsMultiYear());
         contract.setStartDate(new DateTime(dto.getStartDate()));
+        contract.setContent(dto.getContent());
 
         if(dto.getFirstReviewProcess() != null){
             contract.setFirstReviewProcess(processRepository.findOneByName(dto.getFirstReviewProcess().getName()));

@@ -23,7 +23,8 @@
         <link rel="stylesheet" href="assets/styles/sidebar.css">
         <link rel="stylesheet" href="assets/styles/main.css">
         <link rel="stylesheet" href="assets/styles/roboto.css">
-
+        <link rel="stylesheet" type="text/css" href="scripts/components/markitup/skins/markitup/style.css" />
+        <link rel="stylesheet" type="text/css" href="scripts/components/markitup/sets/default/style.css" />
         <!-- endbuild -->
     </head>
     <body ng-app="mycontractApp">
@@ -36,7 +37,7 @@
                 <div class="well" ui-view="content"></div>
 
                 <div class="footer" ng-cloak="">
-                    <p translate="footer">This is your footer</p>
+                    <p translate="footer">Copyright © 2017 mycontract</p>
                 </div>
             </div>
         </div>
@@ -81,6 +82,10 @@
         <script src="../../../bower_components/flot.tooltip/js/jquery.flot.tooltip.js"></script>
         <script src="../../../bower_components/chart.js/dist/Chart.js"></script>
         <script src="../../../bower_components/angular-chart.js/dist/angular-chart.js"></script>
+        <script type="text/javascript" src="scripts/components/markitup/jquery.markitup.js"></script>
+        <script type="text/javascript" src="scripts/components/markitup/sets/default/set.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-sanitize.min.js"></script>
+
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -113,7 +118,14 @@
     <script src="scripts/components/util/parse-links.service.js"></script>
     <script src="scripts/components/util/dateutil.service.js"></script>
         <script src="scripts/components/util/urlparameter.service.js"></script>
-    <script src="scripts/app/useraccount/useraccount.js"></script>
+        <script type="text/javascript" src="scripts/components/markitup/markitup.directive.js"></script>
+        <script type="text/javascript" src="scripts/components/markitup/markitup.service.js"></script>
+        <!--<script type="text/javascript" src="scripts/components/util/pdf.js"></script>
+        <script type="text/javascript" src="scripts/components/util/pdf.worker.js"></script>
+        <script type="text/javascript" src="scripts/components/util/pdf.print.js"></script>-->
+
+
+        <script src="scripts/app/useraccount/useraccount.js"></script>
     <script src="scripts/app/useraccount/activate/activate.js"></script>
     <script src="scripts/app/useraccount/activate/activate.controller.js"></script>
     <script src="scripts/app/useraccount/login/login.js"></script>
@@ -162,11 +174,6 @@
     <script src="scripts/components/language/language.service.js"></script>
     <script src="scripts/components/language/language.controller.js"></script>
     <script src="scripts/components/auth/provider/auth.xauth.service.js"></script>
-    <script src="scripts/app/entities/firstEntity/firstEntity.js"></script>
-    <script src="scripts/app/entities/firstEntity/firstEntity.controller.js"></script>
-    <script src="scripts/app/entities/firstEntity/firstEntity-dialog.controller.js"></script>
-    <script src="scripts/app/entities/firstEntity/firstEntity-detail.controller.js"></script>
-    <script src="scripts/components/entities/firstEntity/firstEntity.service.js"></script>
 
     <script src="scripts/app/entities/category/category.js"></script>
     <script src="scripts/app/entities/category/category.controller.js"></script>
@@ -223,6 +230,7 @@
     <script src="scripts/app/entities/contract/contract.controller.js"></script>
     <script src="scripts/app/entities/contract/contract-dialog.controller.js"></script>
     <script src="scripts/app/entities/contract/contract-detail.controller.js"></script>
+        <script src="scripts/app/entities/contract/contract-detail-attachments.controller.js"></script>
         <script src="scripts/app/entities/contract/contract-search.controller.js"></script>
         <script src="scripts/app/entities/contract/contracts-statitics.controller.js"></script>
         <script src="scripts/app/entities/contract/contract-detail-activities.controller.js"></script>
@@ -237,11 +245,6 @@
     <script src="scripts/app/entities/contract_history/contract_history-dialog.controller.js"></script>
     <script src="scripts/app/entities/contract_history/contract_history-detail.controller.js"></script>
     <script src="scripts/components/entities/contract_history/contract_history.service.js"></script>
-    <script src="scripts/app/entities/testEntity/testEntity.js"></script>
-    <script src="scripts/app/entities/testEntity/testEntity.controller.js"></script>
-    <script src="scripts/app/entities/testEntity/testEntity-dialog.controller.js"></script>
-    <script src="scripts/app/entities/testEntity/testEntity-detail.controller.js"></script>
-    <script src="scripts/components/entities/testEntity/testEntity.service.js"></script>
     <script src="scripts/app/entities/contract_process/contract_process.js"></script>
     <script src="scripts/app/entities/contract_process/contract_process.controller.js"></script>
     <script src="scripts/app/entities/contract_process/contract_process-dialog.controller.js"></script>

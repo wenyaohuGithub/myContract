@@ -8,19 +8,22 @@ import com.hu.cm.security.xauth.TokenManager;
 import com.hu.cm.web.rest.admin.LoginUser;
 import com.hu.cm.web.rest.dto.MessageDTO;
 import com.hu.cm.web.rest.dto.UserDTO;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * REST controller for managing Message.
@@ -33,6 +36,9 @@ public class MessageResource {
 
     @Inject
     private MessageRepository messageRepository;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     /**
      * POST  /messages -> Create a new message.
@@ -105,6 +111,23 @@ public class MessageResource {
             dto.setRead(msg.getRead());
             results.add(dto);
         }
+        /*final URI uri= UriComponentsBuilder.fromUriString("http://localhost:8080/ContentManager/api/rest/auth/login").build().toUri();
+
+        String requestJson = "{\"username\":\"administrator\",\"password\":\"123scala\",\"networkId\":\"0\",\"rememberMe\":\"false\"}";
+        form.put("username", "administrator");
+        form.add("password", "123scala");
+        form.add("networkId", "0");
+        form.add("rememberMe", "false");
+
+        MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
+        headers.add("Content-Type", "application/json");*/
+
+        //restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+
+        //HttpEntity<String> request = new HttpEntity<String>(requestJson, headers);
+
+        //HashMap<String, String> response = restTemplate.postForObject(uri, request, HashMap.class);
+
         return new ResponseEntity<>(results, null, HttpStatus.OK);
     }
 

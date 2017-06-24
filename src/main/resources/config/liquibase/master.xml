@@ -11,6 +11,9 @@
     <include file="classpath:config/liquibase/changelog/20161217205943_added_entity_Task.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20161216021717_added_entity_Contract_history.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20161220012441_added_entity_Message.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170603141224_modified_entity_Contract.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170611141224_modified_entity_Contract.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170612012441_added_entity_ContractAttachment.xml" relativeToChangelogFile="false"/>
 <!--
     <include file="classpath:config/liquibase/changelog/20161217111225_load_data.xml" relativeToChangelogFile="false"/>
 

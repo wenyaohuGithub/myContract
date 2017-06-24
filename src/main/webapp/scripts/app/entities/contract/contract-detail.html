@@ -7,44 +7,84 @@
                     <div ng-switch="contract.status == 'Drafting'">
                         <div ng-switch-when="true">
                             <button type="submit" ui-sref="contract.edit({id:contract.id})" class="btn btn-info">
-                                <span>Edit</span>
+                                <span translate="mycontractApp.contract.detail.edit">Edit</span>
                             </button>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-1">
-                    <button type="submit" ui-sref="contract" class="btn btn-info">
-                        <span>Assign</span>
-                    </button>
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" ui-sref="contract" class="btn btn-info">
-                        <span>Comment</span>
-                    </button>
-                </div>
+
                 <div class="col-md-5">
                     <div ng-switch="contract.status == 'Drafting'">
                         <div ng-switch-when="true">
                             <button type="submit" ng-click="submitToNextProcess()" class="btn btn-success">
-                                <span>Complete and submit to: {{contract.nextTask.processName}}</span>
+                                <span translate="mycontractApp.contract.detail.completeAndSubmit" translate-values="{nextProcess: '{{contract.nextTask.processName}}'}">Complete and submit to: {{contract.nextTask.processName}}</span>
                             </button>
                         </div>
                         <div ng-switch-when="false">
                             <button type="submit" ng-click="approveContractRequest()" class="btn btn-success" ng-show="contract.approvable">
-                                <span>Approve</span>
+                                <span translate="mycontractApp.contract.detail.approve">Approve</span>
                             </button>
                             <button type="submit" ng-click="rejectContractRequest()" class="btn btn-danger" ng-show="contract.rejectable">
-                                <span>Reject</span>
+                                <span translate="mycontractApp.contract.detail.reject">Reject</span>
                             </button>
                             <button type="submit" ng-click="submitToNextProcess()" class="btn btn-success" ng-show="!contract.rejectable && contract.nextTask">
-                                <span>Complete and submit to: {{contract.nextTask.processName}}</span>
+                                <span translate="mycontractApp.contract.detail.completeAndSubmit" translate-values="{nextProcess: '{{contract.nextTask.processName}}'}">Complete and submit to: {{contract.nextTask.processName}}</span>
                             </button>
                             <button type="submit" ng-click="submitToNextProcess()" class="btn btn-success" ng-show="!contract.nextTask && contract.status != 'Archived'">
-                                <span>Archive</span>
+                                <span translate="mycontractApp.contract.detail.archive">Archive</span>
                             </button>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="uploadFile_Confirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="uploadFile" ng-submit="confirmUploadFile()">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="mycontractApp.contract.detail.confirmUpload">Are you sure you want to upload contract file?</h4>
+                    </div>
+                    <div class="modal-body" ng-switch="isFileSelected()">
+                        <div ng-switch-when="true">
+                            <span  class="file-selected"> {{ uploadedFile.name }}</span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;<span translate="entity.action.ok">OK</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteContractFile_Confirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteFileForm" ng-submit="confirmDeleteFile()">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="mycontractApp.contract.detail.confirmDelete">Are you sure to delete contract file</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;<span translate="entity.action.ok">OK</span>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -60,7 +100,7 @@
                     </div>
                     <div class="modal-body">
                         <p translate="mycontractApp.contract.submitToNextProcess.question" translate-values="{nextProcess: '{{contract.nextTask.processName}}'}">Are you sure you want to submit to next process?</p>
-                        <label>Please enter your note</label>
+                        <label translate="mycontractApp.contract.detail.noteReminder">Please enter your note</label>
                         <textarea id="commentArea" rows="4" cols="70" required ng-model="note" name="comment" focus-me="true" ng-maxlength="255"></textarea>
                     </div>
                     <div class="modal-footer">
@@ -87,7 +127,7 @@
                     </div>
                     <div class="modal-body">
                         <p translate="mycontractApp.contract.rejectProcess.question">Are you sure you want to send back to draft?</p>
-                        <label>Please enter your note</label>
+                        <label translate="mycontractApp.contract.detail.noteReminder">Please enter your note</label>
                         <textarea id="rejectNote" rows="4" cols="70" required ng-model="note" name="comment" focus-me="true" ng-maxlength="255"></textarea>
                     </div>
                     <div class="modal-footer">
@@ -114,7 +154,7 @@
                     </div>
                     <div class="modal-body">
                         <p translate="mycontractApp.contract.approveProcess.question">Are you sure you want to approve current request?</p>
-                        <label>Please enter your note</label>
+                        <label translate="mycontractApp.contract.detail.noteReminder">Please enter your note</label>
                         <textarea id="approveNote" rows="4" cols="70" required ng-model="note" name="comment" focus-me="true" ng-maxlength="255"></textarea>
                     </div>
                     <div class="modal-footer">
@@ -131,7 +171,7 @@
     </div>
 
     <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
 
     <div class="table-responsive">
         <table class="table">
@@ -143,7 +183,20 @@
                     <td>
                         <input type="text" class="input-sm form-control" value="{{contract.name}}" readonly>
                     </td>
+                    <td>
+                        <span translate="mycontractApp.contract.contract_party">Contract Party</span>
+                    </td>
+                    <td><a ui-sref="contract_party.detail({id:contract.contractParty.id})">
+                        <input type="text" class="input-sm form-control" value="{{contract.contractParty.name}}" readonly></a>
+                    </td>
+                    <td>
+                        <span translate="mycontractApp.contract.amount">Amount</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{contract.amount}}" readonly>
+                    </td>
                 </tr>
+                <!--
                 <tr>
                     <td>
                         <span translate="mycontractApp.contract.description">Description</span>
@@ -151,7 +204,7 @@
                     <td>
                         <input type="text" class="input-sm form-control" value="{{contract.description}}">
                     </td>
-                </tr>
+                </tr>-->
                 <tr ng-if="$root.showElement('STANDARD,ADVANCED')">
                     <td>
                         <span translate="mycontractApp.contract.category">category</span>
@@ -160,6 +213,7 @@
                         <input type="text" class="input-sm form-control" value="{{contract.category.name}}" readonly></a>
                     </td>
                 </tr>
+                <!--
                 <tr>
                     <td>
                         <span translate="mycontractApp.contract.contract_party">Contract Party</span>
@@ -167,14 +221,15 @@
                     <td><a ui-sref="contract_party.detail({id:contract.contractParty.id})">
                         <input type="text" class="input-sm form-control" value="{{contract.contractParty.name}}" readonly></a>
                     </td>
-                    <!--
+
                     <td>
                         <span translate="mycontractApp.contract.status">Status</span>
                     </td>
                     <td>
                         <input type="text" class="input-sm form-control" value="{{contract.status}}" readonly>
-                    </td>-->
-                </tr>
+                    </td>
+                </tr>-->
+                <!--
                 <tr>
                     <td>
                         <span translate="mycontractApp.contract.amount">Amount</span>
@@ -188,7 +243,7 @@
                     <td ng-if="$root.showElement('ADVANCED')">
                         <input type="text" class="input-sm form-control" value="{{contract.currency}}" readonly>
                     </td>
-                </tr>
+                </tr>-->
                 <tr ng-if="$root.showElement('ADVANCED')">
                     <td>
                         <span translate="mycontractApp.contract.amount_written">Amount_written</span>
@@ -203,32 +258,64 @@
                         <input type="text" class="input-sm form-control" value="{{contract.fundSource.name}}" readonly>
                     </td>
                 </tr>
+
             </tbody>
         </table>
     </div>
+        <div class="col-md-3">
+           <span translate="mycontractApp.contract.content.label">Contract Content</span>
+            </div>
+           <div class="col-md-9" ng-bind-html="contract.content">
+               <!--<textarea id="contractContent" rows="40" cols="100" ng-model="contract.content" readonly></textarea>-->
+           </div>
 
+    <div class="col-md-12">
+
+                <div class="col-md-2">
+                    <span translate="mycontractApp.contract.file">Contract File</span>
+                </div>
+        <div ng-if="contract.contractFilePath">
+                <div class="col-md-4">{{contract.contractFilePath}}</div>
+                <div class="col-md-2">
+                    <button type="submit" ng-click="viewContractFile()" class="btn btn-info">
+                        <span translate="mycontractApp.contract.detail.view">View Contract File</span>
+                    </button>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" ng-click="deleteContractFile()" class="btn btn-warning">
+                        <span translate="mycontractApp.contract.detail.delete">Delete Contract File</span>
+                    </button>
+                </div>
+            </div>
+                <div class="col-md-2">
+                        <span class="btn btn-info fileinput-button" ng-class="{disabled: disabled}">
+                            <span translate="mycontractApp.contract.detail.upload">Upload Contract File</span>
+                            <input type="file" name="file" onchange="angular.element(this).scope().selectFile(this.files)" style="width: 100px;height: 50px;"/>
+                        </span>
+                </div>
+        </div>
     <hr>
 
     <div id="content">
         <ul class="nav nav-tabs" id="myTab">
-            <li class="active"><a data-target="#info" data-toggle="tab">Detail Info</a></li>
-            <li ng-if="$root.showElement('STANDARD,ADVANCED')"><a data-target="#project" data-toggle="tab">Project Info</a></li>
-            <li><a data-target="#notes" data-toggle="tab">Notes</a></li>
-            <li><a data-target="#activities" data-toggle="tab">Activities</a></li>
-            <li><a data-target="#attachments" data-toggle="tab">Attachments</a></li>
+            <li class="active"><a data-target="#info" data-toggle="tab"><span translate="mycontractApp.contract.detail.info">Detail Info</span></a></li>
+            <li ng-if="$root.showElement('STANDARD,ADVANCED')"><a data-target="#project" data-toggle="tab"><span translate="mycontractApp.contract.project">Project Info</span></a></li>
+            <li><a data-target="#notes" data-toggle="tab"><span translate="mycontractApp.contract.detail.notes">Notes</span></a></li>
+            <!--<li><a data-target="#activities" data-toggle="tab">Activities</a></li>-->
+            <li><a data-target="#attachments" data-toggle="tab"><span translate="mycontractApp.contract.detail.attachments">Attachments</span></a></li>
         </ul>
 
         <div class="tab-content">
             <div class="tab-pane active" id="info"><div ui-view="info"></div></div>
             <div class="tab-pane" id="project" ng-if="$root.showElement('STANDARD,ADVANCED')"><div ui-view="project"></div></div>
             <div class="tab-pane" id="notes"><div ui-view="notes"></div></div>
-            <div class="tab-pane" id="activities"><div ui-view="activities"></div></div>
+            <!--<div class="tab-pane" id="activities"><div ui-view="activities"></div></div>-->
             <div class="tab-pane" id="attachments"><div ui-view="attachments"></div></div>
         </div>
     </div>
     </div>
 
-
+<!--
     <div class="col-md-3">
         <div style="height:400px; overflow:auto;">
             <table>
@@ -266,6 +353,6 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div>-->
     </div>
 </div>

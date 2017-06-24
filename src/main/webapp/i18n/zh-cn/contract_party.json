@@ -2,26 +2,32 @@
     "mycontractApp": {
         "contract_party" : {
             "home": {
-                "title": "Contract_partys",
-                "createLabel": "Create a new Contract_party",
-                "createOrEditLabel": "Create or edit a Contract_party"
+                "title": "合同主体",
+                "createLabel": "建立新合同主体",
+                "createOrEditLabel": "建立或修改合同主体"
             },
             "delete": {
-                "question": "Are you sure you want to delete Contract_party {{ id }}?"
+                "question": "确认删除合同主体 {{ id }}?"
             },
             "detail": {
-                "title": "Contract_party"
+                "title": "合同主体"
             },
-            "name": "Name",
-            "description": "Description",
-            "registration_id": "Registration_id",
-            "registered_capital": "Registered_capital",
-            "legal_representative": "Legal_representative",
-            "registration_inspection_record": "Registration_inspection_record",
-            "professional_certificate": "Professional_certificate",
-            "business_certificate": "Business_certificate",
-            "address": "address",
-            "bank_account": "bank_account"
+            "name": "名称",
+            "description": "详细内容",
+            "registration_id": "注册号码",
+            "registered_capital": "注册资金",
+            "legal_representative": "法定代表人",
+            "registration_inspection_record": "年审记录",
+            "professional_certificate": "专业资质证书",
+            "business_certificate": "工商证书",
+            "address": "地址",
+            "address_line_1": "门牌号",
+            "address_line_2": "街道",
+            "city": "城市",
+            "province": "省份",
+            "country": "国家",
+            "postal_code": "邮编",
+            "bank_account": "银行账号"
         }
     }
 }

@@ -46,6 +46,7 @@ angular.module('mycontractApp').controller('Contract_sampleDialogController',
             var fd = new FormData();
             fd.append('file', file);
             var params = {
+                type: 'ContractSample',
                 name : $scope.contract_sample.name,
                 desc : $scope.contract_sample.description
             };

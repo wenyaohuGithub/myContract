@@ -9,8 +9,10 @@ angular.module('mycontractApp')
             $state.go('login');
         };
 
-        $scope.messages = [];
-        Message.query(function(result, status, headers) {
-            $scope.messages = result;
-        });
+        /*$scope.messages = [];
+        if($scope.isAuthenticated == true){
+            Message.query(function(result, status, headers) {
+                $scope.messages = result;
+            });
+        }*/
     });

@@ -1,0 +1,18 @@
+{
+    "mycontractApp": {
+        "account" : {
+            "home": {
+                "title": "账号",
+                "createLabel": "建立一个新账号",
+                "createOrEditLabel": "建立或修改账号"
+            },
+            "delete": {
+                "question": "确认删除账号 {{ id }}?"
+            },
+            "detail": {
+                "title": "账号"
+            },
+            "name": "名称"
+        }
+    }
+}

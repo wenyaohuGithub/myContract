@@ -51,7 +51,7 @@ angular.module('mycontractApp')
             save: function(contract, callback) {
                 $http.post('api/contracts', contract).success(callback);
             },
-            update: function(obj) {
+            update: function(contract, callback) {
                 $http.put('api/contracts', contract).success(callback);
             },
             approve: function(id, note, callback){
@@ -70,9 +70,21 @@ angular.module('mycontractApp')
                 var urlParamString = UrlParams.parseParam(params);
                 $http.get('api/contracts/search' + urlParamString).success(callback);
             },
+            download: function(id, callback) {
+                $http.get('api/contracts/download/'+id, { responseType: 'arraybuffer' }).success(callback);
+            },
+            uploadAttachment: function(id, callback) {
+                $http.get('api/contracts/download/'+id, { responseType: 'arraybuffer' }).success(callback);
+            },
             sumbymonth: function(params, callback) {
                 var urlParamString = UrlParams.parseParam(params);
                 $http.get('api/contracts/sumbymonth/' + urlParamString).success(callback);
+            },
+            getAttachments: function(id, callback) {
+                $http.get('api/contracts/'+id+'/attachments').success(callback);
+            },
+            deleteContractFile:function(id, callback){
+                $http.delete('api/contracts/'+id+'/file').success(callback);
             }
         }
     });

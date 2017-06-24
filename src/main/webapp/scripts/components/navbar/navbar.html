@@ -132,7 +132,7 @@
                     <span translate="global.menu.contract">Contract</span>
                 </a>
             </li>
-            -->
+
 
             <li ui-sref-active="active" class="dropdown pointer">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="">
@@ -153,6 +153,29 @@
                         &#xA0;<span translate="global.menu.contract.statistics">Contracts Statistics</span></a></li>
                 </ul>
             </li>
+            -->
+
+            <li ui-sref-active="active">
+                <a ui-sref="contract"><span class="fa fa-gears"></span>
+                        &#xA0;<span translate="global.menu.contract.mine">My Contracts</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="contract.new"><span class="fa fa-chain"></span>
+                        &#xA0;<span translate="global.menu.contract.new">Create A Contract</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="contract.search"><span class="fa fa-search"></span>
+                        &#xA0;<span translate="global.menu.contract.search">Search Contracts</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="contract.statistics"><span class="fa fa-line-chart"></span>
+                        &#xA0;<span translate="global.menu.contract.statistics">Contracts Statistics</span>
+                </a>
+            </li>
+
             <li ng-if="showElement('ADVANCED')" ui-sref-active="active">
                 <a ui-sref="task">
                     <span class="glyphicon glyphicon-tasks"></span>

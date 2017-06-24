@@ -54,7 +54,7 @@ angular.module('mycontractApp')
                     },
                     'attachments@contract.detail':{
                         templateUrl: 'scripts/app/entities/contract/contract-detail-attachments.html',
-                        controller: 'ContractDetailController'
+                        controller: 'ContractDetailAttachmentsController'
                     }
                 },
                 resolve: {
@@ -103,7 +103,7 @@ angular.module('mycontractApp')
                         size: 'lg',
                         resolve: {
                             entity: function () {
-                                return {name: null, reviewIdentifier: null, contractIdentifier: null, contractingMethod: null, amount: null, amountWritten: null, currency: null, amountCurrentYear: null, submitDate: null, startDate: null, endDate: null, expireDate: null, isMultiYear: null, status: null, state: null, approveDate: null, signDate: null, archiveDate: null, id: null};
+                                return {name: null, reviewIdentifier: null, contractIdentifier: null, contractingMethod: null, amount: null, amountWritten: null, currency: null, amountCurrentYear: null, submitDate: null, startDate: null, endDate: null, expireDate: null, isMultiYear: null, status: null, state: null, approveDate: null, signDate: null, archiveDate: null, id: null, content: null};
                             }
                         }
                     }).result.then(function(result) {

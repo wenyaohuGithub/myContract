@@ -70,6 +70,9 @@ public class ContractService {
     @Inject
     private MessageRepository messageRepository;
 
+    @Inject
+    private AttachmentRepository attachmentRepository;
+
     public Contract createContract(Contract contract){
         User currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get();
 
@@ -95,8 +98,8 @@ public class ContractService {
 
         Contract result = contractRepository.save(contract);
 
-        result.setContractIdentifier("CONTRACT-"+ Calendar.YEAR+"-"+ Calendar.MONTH+1+"-"+result.getId());
-        result.setReviewIdentifier("REVIEW-"+Calendar.YEAR+"-"+ Calendar.MONTH+1+"-"+result.getId());
+        result.setContractIdentifier("C-"+ Calendar.YEAR+"-"+ Calendar.MONTH+1+"-"+result.getId());
+        result.setReviewIdentifier("R-"+Calendar.YEAR+"-"+ Calendar.MONTH+1+"-"+result.getId());
 
         result = contractRepository.save(result);
 
@@ -427,5 +430,20 @@ public class ContractService {
 
         ContractHistory result = contractHistoryRepository.save(contractHistory);
         return result;
+    }
+
+    public String createContractFile(Contract contract){
+        String filePath = "a";
+        String content = contract.getContent();
+        return filePath;
+    }
+
+    public Attachment createContractAttachment(Attachment attachment){
+        Attachment result = attachmentRepository.save(attachment);
+        return result;
+    }
+
+    public Attachment getAttachment(Long id){
+        return attachmentRepository.findOne(id);
     }
 }

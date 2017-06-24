@@ -2,19 +2,19 @@
     "mycontractApp": {
         "process" : {
             "home": {
-                "title": "Processs",
-                "createLabel": "Create a new Process",
-                "createOrEditLabel": "Create or edit a Process"
+                "title": "审批步骤",
+                "createLabel": "建立新审批步骤",
+                "createOrEditLabel": "修改审批步骤"
             },
             "delete": {
-                "question": "Are you sure you want to delete Process {{ id }}?"
+                "question": "确认删除审批步骤 {{ id }}?"
             },
             "detail": {
-                "title": "Process"
+                "title": "审批步骤"
             },
-            "name": "Name",
-            "description": "Description",
-            "eligible_personnel": "eligible_personnel"
+            "name": "名称",
+            "description": "详细内容",
+            "eligible_personnel": "符合人选"
         }
     }
 }

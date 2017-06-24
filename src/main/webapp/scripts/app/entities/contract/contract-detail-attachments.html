@@ -1,2 +1,25 @@
-contract detail attachment
+<div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tbody>
+            <tr ng-repeat="contract_attachment in contract_attachments">
+                <td>{{contract_attachment.filePath}}</td>
+                <td>{{contract_attachment.uploadDatetime}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div ng-switch="isFileSelected()">
+            <span ng-switch-when="false" class="btn btn-info fileinput-button" ng-class="{disabled: disabled}">
+            <i class="glyphicon glyphicon-plus"></i>
+            <span translate="mycontractApp.contract.attachment.select">Select file</span>
+
+            <input type="file" name="file" onchange="angular.element(this).scope().selectFile(this.files)" style="width: 100px;height: 50px;"/>
+            </span>
+
+            <span ng-switch-when="true" class="file-selected"> {{ uploadedFile.name }}</span>
+            <span ng-switch-when="true" class="btn btn-info" ng-click="uploadFile()">Upload</span>
+            <span ng-switch-when="true" class="btn btn-info" ng-click="clear()">Cancel</span>
+        </div>
+    </div>
+</div>
 

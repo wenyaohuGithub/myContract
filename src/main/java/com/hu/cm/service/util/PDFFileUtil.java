@@ -29,6 +29,14 @@ public final class PDFFileUtil {
     private static final int DEF_COUNT = 20;
 
     private PDFFileUtil() {
+        /*
+        h1 is   32px   (2em)
+        h2 is   24px (1.5em)
+        h3 is 20.8px (1.3em)
+        h4 is   16px   (1em)
+        h5 is 12.8px (0.8em)
+        h6 is 11.2px (0.7em)
+        */
     }
 
 

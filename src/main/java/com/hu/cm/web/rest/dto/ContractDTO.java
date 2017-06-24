@@ -60,6 +60,8 @@ public class ContractDTO {
 
     private String archiveDate;
 
+    private String content;
+
     private ContractPartyDTO contractParty;
 
     private DepartmentDTO administrativeDepartment;
@@ -87,6 +89,8 @@ public class ContractDTO {
     private Boolean rejectable;
 
     private Boolean approvable;
+
+    private String contractFilePath;
 
 
     public Long getId() {
@@ -399,6 +403,22 @@ public class ContractDTO {
 
     public void setRejectable(Boolean rejectable) {
         this.rejectable = rejectable;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getContractFilePath() {
+        return contractFilePath;
+    }
+
+    public void setContractFilePath(String contractFilePath) {
+        this.contractFilePath = contractFilePath;
     }
 
     @Override

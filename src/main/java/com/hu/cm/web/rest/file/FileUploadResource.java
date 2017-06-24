@@ -1,8 +1,12 @@
 package com.hu.cm.web.rest.file;
 
 import com.codahale.metrics.annotation.Timed;
+import com.hu.cm.domain.Contract;
 import com.hu.cm.domain.configuration.ContractSample;
+import com.hu.cm.domain.Attachment;
 import com.hu.cm.domain.admin.User;
+import com.hu.cm.repository.AttachmentRepository;
+import com.hu.cm.repository.ContractRepository;
 import com.hu.cm.repository.configuration.Contract_sampleRepository;
 import com.hu.cm.repository.admin.UserRepository;
 import com.hu.cm.security.SecurityUtils;
@@ -10,6 +14,8 @@ import com.hu.cm.service.util.PDFFileUtil;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +45,13 @@ public class FileUploadResource {
     private Contract_sampleRepository contract_sampleRepository;
 
     @Inject
+    private ContractRepository contractRepository;
+
+    @Inject
     private UserRepository userRepository;
+
+    @Inject
+    private AttachmentRepository attachmentRepository;
 
     /**
      * POST
@@ -48,33 +60,63 @@ public class FileUploadResource {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity create(@RequestParam String name, @RequestParam (required = false) String desc, MultipartFile file) throws URISyntaxException {
+    public ResponseEntity create(@RequestParam (required = true) String type, @RequestParam (required = true) Long id, MultipartFile file) throws URISyntaxException {
         log.debug("REST request to upload file : {}", file.getOriginalFilename());
-        String filename = file.getOriginalFilename();
+        File directory = null;
+        String newFileName = null;
+        Contract c = null;
+        Attachment a = null;
+        ContractSample s = null;
+        if(type.equals("ContractSample")){
+            s = contract_sampleRepository.findOne(id);
+            if(s==null) {
+                return ResponseEntity.badRequest().header("Failure", "Contract Sample not found").body("{\"status\": \"error\"}");
+            }
+            directory  = new File("uploadedFiles");
+            newFileName = file.getOriginalFilename();
+        } else if (type.equals("ContractContent")){
+            c = contractRepository.findOne(id);
+            if(c == null) {
+                return ResponseEntity.badRequest().header("Failure", "Contract not found").body("{\"status\": \"error\"}");
+            }
+            directory  = new File("contractFiles/"+id.toString());
+            newFileName = "C_"+file.getOriginalFilename();
+        } else if (type.equals("ContractAttachment")){
+            a = attachmentRepository.findOne(id);
+            if(a==null) {
+                return ResponseEntity.badRequest().header("Failure", "Contract Attachment not found").body("{\"status\": \"error\"}");
+            }
+            directory  = new File("contractFiles/"+id.toString());
+            newFileName = "A_"+file.getOriginalFilename();
+        } else {
+
+        }
+
         if (!file.isEmpty()) {
             try {
-                File directory = new File("uploadedFiles");
                 if(!directory.exists() || !directory.isDirectory()){
                     if (!directory.mkdir()) {
-                        return ResponseEntity.badRequest().header("Failure", "Directory doesn't not exist, and dan't being created").body(null);
+                        return ResponseEntity.badRequest().header("Failure", "Directory doesn't not exist, and can't be created").body(null);
                     }
                 }
                 byte[] bytes = file.getBytes();
                 BufferedOutputStream stream =
-                    new BufferedOutputStream(new FileOutputStream(new File(directory + "/" +filename)));
+                    new BufferedOutputStream(new FileOutputStream(new File(directory + "/" + newFileName)));
                 stream.write(bytes);
                 stream.close();
-                ContractSample sample = new ContractSample();
-                sample.setName(name);
-                if(desc != null){
-                    sample.setDescription(desc);
+                if(type.equals("ContractSample")){
+                    s.setFile_name(newFileName);
+                    s.setPath(directory.getPath());
+                    contract_sampleRepository.save(s);
+                }else if (type.equals("ContractContent")){
+                    c.setContractFilePath(directory+"/"+newFileName);
+                    contractRepository.save(c);
+                }else if (type.equals("ContractAttachment")){
+                    a.setFilePath(directory+"/"+newFileName);
+                    attachmentRepository.save(a);
+                } else {
+
                 }
-                sample.setFile_name(filename);
-                sample.setPath(directory.getAbsolutePath());
-                User currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentLogin()).get();
-                sample.setUploaded_by(currentUser.getFirstName() + " " + currentUser.getLastName());
-                sample.setUploaded_date_time(new DateTime());
-                contract_sampleRepository.save(sample);
                 return ResponseEntity.created(new URI("/api/fileupload")).body("{\"status\": \"done\"}");
             } catch (Exception e) {
                 return ResponseEntity.badRequest().header("Failure", "File upload failed").body("{\"status\": \"error\"}");
@@ -156,5 +198,21 @@ public class FileUploadResource {
         }
 
         return null;
+    }
+
+    /**
+     * GET
+     */
+    @RequestMapping("/files/{filename}")
+    @ResponseBody
+    public ResponseEntity serveFile(@PathVariable String filename) {
+
+        String path = "uploadedFiles";
+        path = path + (path.endsWith("/") ? filename : ("/" + filename));
+        File file = new File("uploadedFiles/a.pdf");
+        return ResponseEntity
+                .ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+file.getName()+"\"")
+                .body(file);
     }
 }

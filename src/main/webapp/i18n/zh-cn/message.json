@@ -2,22 +2,22 @@
     "mycontractApp": {
         "message" : {
             "home": {
-                "title": "Messages",
-                "createLabel": "Create a new Message",
-                "createOrEditLabel": "Create or edit a Message"
+                "title": "消息",
+                "createLabel": "建立新消息",
+                "createOrEditLabel": "建立修改消息"
             },
             "delete": {
-                "question": "Are you sure you want to delete Message {{ id }}?"
+                "question": "确定删除消息 {{ id }}?"
             },
             "detail": {
-                "title": "Message"
+                "title": "消息"
             },
-            "subject": "Subject",
-            "content": "Content",
-            "send_datetime": "Send_datetime",
-            "read": "Read",
-            "sender": "sender",
-            "recipient": "recipient"
+            "subject": "主题",
+            "content": "内容",
+            "send_datetime": "发送日期时间",
+            "read": "已读",
+            "sender": "发送人",
+            "recipient": "收件人"
         }
     }
 }

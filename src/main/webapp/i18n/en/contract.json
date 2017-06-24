@@ -13,7 +13,22 @@
             "detail": {
                 "title": "Contract",
                 "project.name": "Project",
-                "project.manager": "Manager"
+                "project.manager": "Manager",
+                "edit": "Edit",
+                "print": "Print",
+                "view": "View Contract File",
+                "upload": "Upload Contract File",
+                "delete": "Delete Contract File",
+                "confirmDelete": "Are you sure you want to delete contract file?",
+                "confirmUpload": "Are you sure you want to upload contract file?",
+                "approve": "Approve",
+                "reject": "Reject",
+                "archive": "Archive",
+                "completeAndSubmit": "Complete and submit to: {{nextProcess}}",
+                "noteReminder": "Please enter your notes",
+                "info": "Detail Info",
+                "notes": "Notes",
+                "attachments": "Attachments"
             },
             "messages":{
                 "validate": {
@@ -34,6 +49,9 @@
             },
             "statistics":{
                 "title": "Contracts Statistics"
+            },
+            "attachment":{
+                "select": "Select File"
             },
             "name": "Name",
             "description": "Description",
@@ -62,7 +80,12 @@
             "fund_source": "fund source",
             "contract_sample": "contract sample",
             "related_department": "related department",
-            "project": "Project"
+            "project": "Project",
+            "file": "Contract File",
+            "content": {
+                "label": "Content",
+                "select": "Select File"
+            }
         }
     }
 }

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('mycontractApp').controller('ContractDialogController',
-    ['$scope', '$stateParams', '$modalInstance', 'entity', 'Contract', 'Contract_party', 'Department', 'Category', 'Fund_source', 'Contract_sample', 'Process',
-        function($scope, $stateParams, $modalInstance, entity, Contract, Contract_party, Department, Category, Fund_source, Contract_sample, Process) {
+    ['$scope', '$stateParams', '$modalInstance', 'entity', 'FileUpload', 'Contract', 'Contract_party', 'Department', 'Category', 'Fund_source', 'Contract_sample', 'Process',
+        function($scope, $stateParams, $modalInstance, entity, FileUpload, Contract, Contract_party, Department, Category, Fund_source, Contract_sample, Process) {
 
         $scope.contract = entity;
         $scope.contract_parties = Contract_party.query();
@@ -12,6 +12,34 @@ angular.module('mycontractApp').controller('ContractDialogController',
         $scope.contract_samples = Contract_sample.query();
         $scope.addedRelatedInternvalDivisions = [];
         $scope.nextProcesses = [];
+
+        var isFileUploaded = false;
+        $scope.uploadedFile = null;
+
+        $scope.uploadFile = function() {
+            var file = $scope.uploadedFile;
+            var fd = new FormData();
+            fd.append('file', file);
+
+            FileUpload.upload().uploadFile(fd, onUploadFinished);
+        };
+
+        $scope.isFileSelected = function() {
+            if($scope.uploadedFile){
+                return true;
+            } else {
+                return false;
+            }
+        };
+
+        $scope.isFileUploaded = function() {
+            return isFileUploaded;
+        };
+
+        $scope.selectFile = function(files){
+            $scope.uploadedFile = files[0];
+            $scope.$apply();
+        };
 
         $scope.getNextProcess = function(workflowId){
             Process.getAvailableProcesses({current: 1, workflow: workflowId}, function(result){
@@ -27,8 +55,29 @@ angular.module('mycontractApp').controller('ContractDialogController',
         };
 
         var onSaveFinished = function (result) {
-            $scope.$emit('mycontractApp:contractUpdate', result);
-            $modalInstance.close(result);
+            if($scope.uploadedFile){
+                var file = $scope.uploadedFile;
+                var fd = new FormData();
+                fd.append('file', file);
+                var params = {
+                    type: 'ContractContent',
+                    id : result.id
+                };
+                FileUpload.setParameter(params);
+                FileUpload.upload().uploadFile(fd, onUploadFinished);
+            }else {
+                $scope.$emit('mycontractApp:contractUpdate', result);
+                $modalInstance.close(result);
+            }
+        };
+
+        var onUploadFinished = function(result){
+            if(result.status == 'done'){
+                $scope.$emit('mycontractApp:contractUpdate', result);
+                $modalInstance.close(result);
+            } else if(result.status = 'error'){
+                console.log("error");
+            }
         };
 
         $scope.save = function () {
@@ -42,11 +91,13 @@ angular.module('mycontractApp').controller('ContractDialogController',
                 angular.forEach($scope.addedRelatedInternvalDivisions, function(value){
                     $scope.contract.relatedDepartments.push(value.id);
                 });
+
                 Contract.save($scope.contract, onSaveFinished);
             }
         };
 
         $scope.clear = function() {
+            $scope.uploadedFile = null;
             $modalInstance.dismiss('cancel');
         };
 
@@ -79,6 +130,5 @@ angular.module('mycontractApp').controller('ContractDialogController',
             var index = $scope.addedRelatedInternvalDivisions.indexOf(removedDept);
             $scope.addedRelatedInternvalDivisions.splice(index, 1);
         };
-
 
 }]);

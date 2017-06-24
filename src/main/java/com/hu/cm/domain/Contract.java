@@ -20,7 +20,6 @@ import javax.persistence.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -29,7 +28,6 @@ import java.util.Objects;
 
 import com.hu.cm.domain.enumeration.ContractingMethod;
 import com.hu.cm.domain.enumeration.Currency;
-import com.hu.cm.domain.enumeration.ProcessState;
 
 
 /**
@@ -65,6 +63,12 @@ public class Contract implements Serializable {
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "content")
+    private String content;
+
+    @Column(name = "contract_file_path")
+    private String contractFilePath;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "currency")
@@ -200,6 +204,11 @@ public class Contract implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Task> tasks = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contract", orphanRemoval = true)
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Attachment> attachments = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -487,6 +496,30 @@ public class Contract implements Serializable {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getContractFilePath() {
+        return contractFilePath;
+    }
+
+    public void setContractFilePath(String contractFilePath) {
+        this.contractFilePath = contractFilePath;
+    }
+
+    public Set<Attachment> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(Set<Attachment> attachments) {
+        this.attachments = attachments;
     }
 
     @Override
