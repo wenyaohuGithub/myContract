@@ -53,6 +53,13 @@
             "attachment":{
                 "select": "选择文件"
             },
+            "search":{
+                "title": "搜索合同",
+                "name": "名称包含",
+                "amount": "金额介于",
+                "and": "和",
+                "signdate": "签订日期介于"
+            },
             "name": "名称",
             "description": "具体信息",
             "review_identifier": "审核号码",
@@ -70,6 +77,31 @@
             "is_multi_year": "是否跨年合同",
             "status": "状态",
             "state": "状态",
+            "states": {
+                "Drafting": "起草中",
+                "Reviewing": "审批中",
+                "Approved": "已批准",
+                "Signed": "已签约",
+                "Execution": "执行中",
+                "Finished": "已完成",
+                "Expired": "过期",
+                "Archived": "归档"
+            },
+            "process":{
+                "CONTRACT_DRAFT": "起草合同",
+                "INTERNAL_DIV_REVIEW": "处室内部审批",
+                "RELATED_DIV_REVIEW": "相关处室审批",
+                "INTERNAL_DEPT_REVIEW": "部门内部审批",
+                "RELATED_DEPT_REVIEW": "相关部门审批",
+                "FINANCE_DEPT_REVIEW": "财务部门审批",
+                "LEGAL_DEPT_REVIEW": "法务部门审批",
+                "TECH_DEPT_REVIEW": "技术部门审批",
+                "DEV_STRATEGY_DEPT_REVIEW": "战略发展部门审批",
+                "EXECUTIVE_REVIEW": "公司领导审批",
+                "CONTRACT_SIGN": "签订合同",
+                "CONTRACT_EXECUTION": "执行合同",
+                "CONTRACT_ARCHIVE": "合同归档"
+            },
             "approve_date": "批准日期",
             "sign_date": "签字日期",
             "archive_date": "归档日期",
@@ -85,10 +117,6 @@
             "content": {
                 "label": "内容",
                 "select": "选择合同文本"
-            },
-            "status":{
-                "title": "状态",
-                "drafting": ""
             },
             "attachments":{
                 "view": "浏览附件",

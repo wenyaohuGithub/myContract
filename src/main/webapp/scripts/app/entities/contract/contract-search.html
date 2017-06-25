@@ -2,7 +2,7 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="clear()">&times;</button>
-        <label>Search contract</label>
+        <label translate="mycontractApp.contract.search.title">Search contract</label>
     </div>
 
     <div class="modal-body">
@@ -10,7 +10,7 @@
             <table class="table">
                 <tbody style="display:block; overflow: auto; height: 500px">
                     <tr>
-                        <td><label>Name like</label></td>
+                        <td><label translate="mycontractApp.contract.search.name">Name like</label></td>
                         <td>
                             <input type="text" class="form-control" name="name" id="field_name" ng-model="searchText.name">
                         </td>
@@ -31,16 +31,16 @@
                     </tr>
 
                     <tr>
-                        <td><label>Amount between</label></td>
+                        <td><label translate="mycontractApp.contract.search.amount">Amount between</label></td>
                         <td class="col-sm-2"><input type="number" class="form-control" name="amount" id="field_amount_1" ng-model="searchText.amount1"></td>
-                        <td class="col-sm-2"><label>and</label></td>
+                        <td class="col-sm-2"><label translate="mycontractApp.contract.search.and">and</label></td>
                         <td class="col-sm-2"><input type="number" class="form-control" name="amount" id="field_amount_2" ng-model="searchText.amount2"></td>
                     </tr>
                     <tr>
-                        <td><label>Sign date between</label></td>
+                        <td><label translate="mycontractApp.contract.search.signdate">Sign date between</label></td>
                         <td><input type="date" class="form-control" name="signDate1" id="field_sign_date_1"
                                    ng-model="searchText.signDate1"></td>
-                        <td><label>and </label></td>
+                        <td><label translate="mycontractApp.contract.search.and">and </label></td>
                         <td><input type="date" class="form-control" name="signDate2" id="field_sign_date_2"
                                    ng-model="searchText.signDate2"></td>
                     </tr>

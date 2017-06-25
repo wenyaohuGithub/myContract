@@ -1,5 +1,5 @@
 <div>
-    <h2><span translate="mycontractApp.contract.detail.title">Contract</span> {{contract.id}} ---- {{contract.status}}</h2>
+    <h2><span translate="mycontractApp.contract.detail.title">Contract</span> {{contract.id}} ---- <span translate="mycontractApp.contract.states.{{contract.status}}"/></h2>
     <div class="panel panel-default" ng-show="contract.status != 'Archived'">
         <div class="panel-body">
             <div class="row">
@@ -17,7 +17,7 @@
                     <div ng-switch="contract.status == 'Drafting'">
                         <div ng-switch-when="true">
                             <button type="submit" ng-click="submitToNextProcess()" class="btn btn-success">
-                                <span translate="mycontractApp.contract.detail.completeAndSubmit" translate-values="{nextProcess: '{{contract.nextTask.processName}}'}">Complete and submit to: {{contract.nextTask.processName}}</span>
+                                <span translate="mycontractApp.contract.detail.completeAndSubmit">Complete and submit to:</span><span translate="mycontractApp.contract.process.{{contract.nextTask.processName}}">{{contract.nextTask.processName}}</span>
                             </button>
                         </div>
                         <div ng-switch-when="false">
@@ -262,12 +262,27 @@
             </tbody>
         </table>
     </div>
-        <div class="col-md-3">
-           <span translate="mycontractApp.contract.content.label">Contract Content</span>
+        <div class="table-responsive">
+            <table class="table">
+                <tbody style="display:block; overflow: auto;">
+                <tr>
+                    <td>
+                        <div class="col-md-3">
+                            <span translate="mycontractApp.contract.content.label">Contract Content</span>
+                        </div>
+                        </td>
+                    <td>
+                        <div class="col-md-9" ng-bind-html="contract.content">
+                            <!--<textarea id="contractContent" rows="40" cols="100" ng-model="contract.content" readonly></textarea>-->
+                        </div>
+                    </td>
+                    </tr>
+                </tbody>
+                </table>
             </div>
-           <div class="col-md-9" ng-bind-html="contract.content">
-               <!--<textarea id="contractContent" rows="40" cols="100" ng-model="contract.content" readonly></textarea>-->
-           </div>
+
+
+
 
     <div class="col-md-12">
 

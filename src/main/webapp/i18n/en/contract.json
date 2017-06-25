@@ -53,6 +53,13 @@
             "attachment":{
                 "select": "Select File"
             },
+            "search": {
+                "title": "Search Contract",
+                "name": "Name like",
+                "amount": "Amount between",
+                "and": "and",
+                "signdate": "Sign date between"
+            },
             "name": "Name",
             "description": "Description",
             "review_identifier": "Review identifier",
@@ -70,6 +77,31 @@
             "is_multi_year": "Is_multi_year",
             "status": "Status",
             "state": "State",
+            "states": {
+                "Drafting": "Drafting",
+                "Reviewing": "Reviewing",
+                "Approved": "Approved",
+                "Signed": "Signed",
+                "Execution": "Execution",
+                "Finished": "Finished",
+                "Expired": "Expired",
+                "Archived": "Archived"
+            },
+            "process":{
+                "CONTRACT_DRAFT": "Draft a contract",
+                "INTERNAL_DIV_REVIEW": "Internal division review",
+                "RELATED_DIV_REVIEW": "Related division review",
+                "INTERNAL_DEPT_REVIEW": "Internal department review",
+                "RELATED_DEPT_REVIEW": "Related department review",
+                "FINANCE_DEPT_REVIEW": "Finance department review",
+                "LEGAL_DEPT_REVIEW": "Legal department review",
+                "TECH_DEPT_REVIEW": "Technology department review",
+                "DEV_STRATEGY_DEPT_REVIEW": "Development and Strategy department review",
+                "EXECUTIVE_REVIEW": "Executive review",
+                "CONTRACT_SIGN": "Sign contract",
+                "CONTRACT_EXECUTION": "Execute contract",
+                "CONTRACT_ARCHIVE": ""
+            },
             "approve_date": "Approve date",
             "sign_date": "Sign date",
             "archive_date": "Archive date",
