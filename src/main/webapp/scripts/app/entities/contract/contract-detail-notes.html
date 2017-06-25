@@ -3,16 +3,16 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th><span translate="mycontractApp.contract.detail.user">User</span></th>
-                <th><span translate="mycontractApp.contract.detail.note">Note</span></th>
-                <th><span translate="mycontractApp.contract.detail.datetime">DateTime</span></th>
+                <th style="width:100px;"><span translate="mycontractApp.contract.detail.user">User</span></th>
+                <th style="width:325px;"><span translate="mycontractApp.contract.detail.note">Note</span></th>
+                <th style="width:200px;"><span translate="mycontractApp.contract.detail.datetime">DateTime</span></th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="history in contract_histories" ng-if="history.note != null">
-                <td>{{history.user.login}}</td>
-                <td>{{history.note}}</td>
-                <td>{{history.action_datetime}}</td>
+                <td style="width:100px;">{{history.user.login}}</td>
+                <td style="width:325px;">{{history.note}}</td>
+                <td style="width:200px;">{{history.action_datetime}}</td>
             </tr>
             </tbody>
         </table>

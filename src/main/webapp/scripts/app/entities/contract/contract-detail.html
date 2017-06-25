@@ -288,19 +288,21 @@
                     <td>
                         <span translate="mycontractApp.contract.file">Contract File</span>
                     </td>
-                    <div ng-if="contract.contractFilePath">
-                        <td>{{contract.contractFilePath}}</td>
-                        <td>
+                    <td>{{contract.contractFilePath}}</td>
+                    <td>
+                        <div ng-if="contract.contractFilePath">
                             <button type="submit" ng-click="viewContractFile()" class="btn btn-info">
                                 <span translate="mycontractApp.contract.detail.view">View Contract File</span>
                             </button>
-                        </td>
-                        <td>
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-if="contract.contractFilePath">
                             <button type="submit" ng-click="deleteContractFile()" class="btn btn-warning">
                                 <span translate="mycontractApp.contract.detail.delete">Delete Contract File</span>
                             </button>
-                        </td>
-                    </div>
+                        </div>
+                    </td>
                     <td>
                         <span class="btn btn-info fileinput-button" ng-class="{disabled: disabled}">
                             <span translate="mycontractApp.contract.detail.upload">Upload Contract File</span>
