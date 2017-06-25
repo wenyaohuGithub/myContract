@@ -28,7 +28,10 @@
                 "noteReminder": "Please enter your notes",
                 "info": "Detail Info",
                 "notes": "Notes",
-                "attachments": "Attachments"
+                "attachments": "Attachments",
+                "user": "User",
+                "note": "Note",
+                "dateTime": "DateTime"
             },
             "messages":{
                 "validate": {

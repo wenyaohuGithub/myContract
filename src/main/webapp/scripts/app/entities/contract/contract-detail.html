@@ -173,145 +173,147 @@
     <div class="row">
     <div class="col-md-12">
 
-    <div class="table-responsive">
-        <table class="table">
-            <tbody style="display:block; overflow: auto;">
-                <tr>
-                    <td>
-                        <span translate="mycontractApp.contract.name">Name</span>
-                    </td>
-                    <td>
-                        <input type="text" class="input-sm form-control" value="{{contract.name}}" readonly>
-                    </td>
-                    <td>
-                        <span translate="mycontractApp.contract.contract_party">Contract Party</span>
-                    </td>
-                    <td><a ui-sref="contract_party.detail({id:contract.contractParty.id})">
-                        <input type="text" class="input-sm form-control" value="{{contract.contractParty.name}}" readonly></a>
-                    </td>
-                    <td>
-                        <span translate="mycontractApp.contract.amount">Amount</span>
-                    </td>
-                    <td>
-                        <input type="text" class="input-sm form-control" value="{{contract.amount}}" readonly>
-                    </td>
-                </tr>
-                <!--
-                <tr>
-                    <td>
-                        <span translate="mycontractApp.contract.description">Description</span>
-                    </td>
-                    <td>
-                        <input type="text" class="input-sm form-control" value="{{contract.description}}">
-                    </td>
-                </tr>-->
-                <tr ng-if="$root.showElement('STANDARD,ADVANCED')">
-                    <td>
-                        <span translate="mycontractApp.contract.category">category</span>
-                    </td>
-                    <td><a ui-sref="category.detail({id:contract.category.id})">
-                        <input type="text" class="input-sm form-control" value="{{contract.category.name}}" readonly></a>
-                    </td>
-                </tr>
-                <!--
-                <tr>
-                    <td>
-                        <span translate="mycontractApp.contract.contract_party">Contract Party</span>
-                    </td>
-                    <td><a ui-sref="contract_party.detail({id:contract.contractParty.id})">
-                        <input type="text" class="input-sm form-control" value="{{contract.contractParty.name}}" readonly></a>
-                    </td>
+        <div class="table-responsive col-md-9" style="padding-left: 0px;">
+            <table class="table">
+                <tbody style="display:block; overflow: auto;">
+                    <tr>
+                        <td>
+                            <span translate="mycontractApp.contract.name">Name</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{contract.name}}" readonly>
+                        </td>
+                        <td>
+                            <span translate="mycontractApp.contract.contract_party">Contract Party</span>
+                        </td>
+                        <td><a ui-sref="contract_party.detail({id:contract.contractParty.id})">
+                            <input type="text" class="input-sm form-control" value="{{contract.contractParty.name}}" readonly></a>
+                        </td>
+                        <td>
+                            <span translate="mycontractApp.contract.amount">Amount</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{contract.amount}}" readonly>
+                        </td>
+                    </tr>
+                    <!--
+                    <tr>
+                        <td>
+                            <span translate="mycontractApp.contract.description">Description</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{contract.description}}">
+                        </td>
+                    </tr>-->
+                    <tr ng-if="$root.showElement('STANDARD,ADVANCED')">
+                        <td>
+                            <span translate="mycontractApp.contract.category">category</span>
+                        </td>
+                        <td><a ui-sref="category.detail({id:contract.category.id})">
+                            <input type="text" class="input-sm form-control" value="{{contract.category.name}}" readonly></a>
+                        </td>
+                    </tr>
+                    <!--
+                    <tr>
+                        <td>
+                            <span translate="mycontractApp.contract.contract_party">Contract Party</span>
+                        </td>
+                        <td><a ui-sref="contract_party.detail({id:contract.contractParty.id})">
+                            <input type="text" class="input-sm form-control" value="{{contract.contractParty.name}}" readonly></a>
+                        </td>
 
-                    <td>
-                        <span translate="mycontractApp.contract.status">Status</span>
-                    </td>
-                    <td>
-                        <input type="text" class="input-sm form-control" value="{{contract.status}}" readonly>
-                    </td>
-                </tr>-->
-                <!--
-                <tr>
-                    <td>
-                        <span translate="mycontractApp.contract.amount">Amount</span>
-                    </td>
-                    <td>
-                        <input type="text" class="input-sm form-control" value="{{contract.amount}}" readonly>
-                    </td>
-                    <td ng-if="$root.showElement('ADVANCED')">
-                        <span translate="mycontractApp.contract.currency">Currency</span>
-                    </td>
-                    <td ng-if="$root.showElement('ADVANCED')">
-                        <input type="text" class="input-sm form-control" value="{{contract.currency}}" readonly>
-                    </td>
-                </tr>-->
-                <tr ng-if="$root.showElement('ADVANCED')">
-                    <td>
-                        <span translate="mycontractApp.contract.amount_written">Amount_written</span>
-                    </td>
-                    <td>
-                        <input type="text" class="input-sm form-control" value="{{contract.amountWritten}}" readonly>
-                    </td>
-                    <td>
-                        <span translate="mycontractApp.contract.fund_source">fund_source</span>
-                    </td>
-                    <td>
-                        <input type="text" class="input-sm form-control" value="{{contract.fundSource.name}}" readonly>
-                    </td>
-                </tr>
+                        <td>
+                            <span translate="mycontractApp.contract.status">Status</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{contract.status}}" readonly>
+                        </td>
+                    </tr>-->
+                    <!--
+                    <tr>
+                        <td>
+                            <span translate="mycontractApp.contract.amount">Amount</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{contract.amount}}" readonly>
+                        </td>
+                        <td ng-if="$root.showElement('ADVANCED')">
+                            <span translate="mycontractApp.contract.currency">Currency</span>
+                        </td>
+                        <td ng-if="$root.showElement('ADVANCED')">
+                            <input type="text" class="input-sm form-control" value="{{contract.currency}}" readonly>
+                        </td>
+                    </tr>-->
+                    <tr ng-if="$root.showElement('ADVANCED')">
+                        <td>
+                            <span translate="mycontractApp.contract.amount_written">Amount_written</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{contract.amountWritten}}" readonly>
+                        </td>
+                        <td>
+                            <span translate="mycontractApp.contract.fund_source">fund_source</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{contract.fundSource.name}}" readonly>
+                        </td>
+                    </tr>
 
-            </tbody>
-        </table>
-    </div>
-        <div class="table-responsive">
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive col-md-9" style="padding-left: 0px;">
             <table class="table">
                 <tbody style="display:block; overflow: auto;">
                 <tr>
                     <td>
-                        <div class="col-md-3">
+                        <div style="width:100px;">
                             <span translate="mycontractApp.contract.content.label">Contract Content</span>
                         </div>
                         </td>
                     <td>
-                        <div class="col-md-9" ng-bind-html="contract.content">
+                        <div style="width:513px;" ng-bind-html="contract.content">
                             <!--<textarea id="contractContent" rows="40" cols="100" ng-model="contract.content" readonly></textarea>-->
                         </div>
                     </td>
                     </tr>
                 </tbody>
-                </table>
-            </div>
+            </table>
+        </div>
 
-
-
-
-    <div class="col-md-12">
-
-                <div class="col-md-2">
-                    <span translate="mycontractApp.contract.file">Contract File</span>
-                </div>
-        <div ng-if="contract.contractFilePath">
-                <div class="col-md-4">{{contract.contractFilePath}}</div>
-                <div class="col-md-2">
-                    <button type="submit" ng-click="viewContractFile()" class="btn btn-info">
-                        <span translate="mycontractApp.contract.detail.view">View Contract File</span>
-                    </button>
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" ng-click="deleteContractFile()" class="btn btn-warning">
-                        <span translate="mycontractApp.contract.detail.delete">Delete Contract File</span>
-                    </button>
-                </div>
-            </div>
-                <div class="col-md-2">
+        <div class="col-md-9"  style="padding-left: 0px;">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td>
+                        <span translate="mycontractApp.contract.file">Contract File</span>
+                    </td>
+                    <div ng-if="contract.contractFilePath">
+                        <td>{{contract.contractFilePath}}</td>
+                        <td>
+                            <button type="submit" ng-click="viewContractFile()" class="btn btn-info">
+                                <span translate="mycontractApp.contract.detail.view">View Contract File</span>
+                            </button>
+                        </td>
+                        <td>
+                            <button type="submit" ng-click="deleteContractFile()" class="btn btn-warning">
+                                <span translate="mycontractApp.contract.detail.delete">Delete Contract File</span>
+                            </button>
+                        </td>
+                    </div>
+                    <td>
                         <span class="btn btn-info fileinput-button" ng-class="{disabled: disabled}">
                             <span translate="mycontractApp.contract.detail.upload">Upload Contract File</span>
                             <input type="file" name="file" onchange="angular.element(this).scope().selectFile(this.files)" style="width: 100px;height: 50px;"/>
                         </span>
-                </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     <hr>
 
-    <div id="content">
+    <div id="content" class="col-md-9" style="padding-left: 0px;">
         <ul class="nav nav-tabs" id="myTab">
             <li class="active"><a data-target="#info" data-toggle="tab"><span translate="mycontractApp.contract.detail.info">Detail Info</span></a></li>
             <li ng-if="$root.showElement('STANDARD,ADVANCED')"><a data-target="#project" data-toggle="tab"><span translate="mycontractApp.contract.project">Project Info</span></a></li>

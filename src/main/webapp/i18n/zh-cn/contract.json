@@ -28,7 +28,10 @@
                 "noteReminder": "请填写你的意见",
                 "info": "具体信息",
                 "notes": "处理意见",
-                "attachments": "合同附件"
+                "attachments": "合同附件",
+                "user": "用户",
+                "note": "意见",
+                "datetime": "日期时间"
             },
             "messages":{
                 "validate": {
