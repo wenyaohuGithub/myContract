@@ -141,7 +141,7 @@ angular.module('mycontractApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pas
             urlTemplate: 'i18n/{lang}/{part}.json'
         });
 
-        $translateProvider.preferredLanguage('en');
+        $translateProvider.preferredLanguage('zh-cn');
         $translateProvider.useCookieStorage();
         $translateProvider.useSanitizeValueStrategy('escaped');
 

@@ -53,7 +53,7 @@
                     <td><a ui-sref="contract.detail({id:contract.id})">{{contract.name}}</a></td>
                     <td>{{contract.amount}}</td>
                     <td>{{contract.createdDate}}</td>
-                    <td>{{contract.status}}</td>
+                    <td><span translate="mycontractApp.contract.states.{{contract.status}}">{{contract.status}}</span></td>
                     <!--
                     <td>
                         <button type="submit"
