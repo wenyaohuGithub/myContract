@@ -27,12 +27,12 @@ angular.module('mycontractApp')
                 url: '/',
                 data: {
                     roles: ['ROLE_USER'],
-                    pageTitle: 'mycontractApp.contract.statistics.title'
+                    pageTitle: 'mycontractApp.public.title'
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/entities/contract/contracts-statistics.html',
-                        controller: 'ContractStatsController'
+                        templateUrl: 'scripts/app/public/public.html',
+                        controller: 'PublicController'
                     }
                 },
                 resolve: {

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mycontractApp')
-    .controller('LoginController', function ($rootScope, $scope, $state, $timeout, Auth) {
+    .controller('PublicController', function ($rootScope, $scope, $state, $timeout, Auth) {
         $scope.user = {};
         $scope.errors = {};
 
@@ -15,9 +15,8 @@ angular.module('mycontractApp')
                 rememberMe: $scope.rememberMe
             }).then(function () {
                 $scope.authenticationError = false;
-                if ($rootScope.previousStateName === 'register' || $rootScope.previousStateName === 'logout'
-                    || $rootScope.previousStateName === 'home') {
-                    $state.go('dashboard');
+                if ($rootScope.previousStateName === 'register' || $rootScope.previousStateName === 'logout') {
+                    $state.go('public');
                 } else {
                     $rootScope.back();
                 }

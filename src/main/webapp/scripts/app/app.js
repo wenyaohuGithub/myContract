@@ -16,9 +16,9 @@ angular.module('mycontractApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pas
                 $translate.use(language);
             });
 
-            if (Principal.isIdentityResolved()){
+            /*if (Principal.isIdentityResolved()){
                 Auth.authorize();
-            }
+            }*/
         });
 
         $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
@@ -38,7 +38,7 @@ angular.module('mycontractApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pas
             });
             if (Principal.isIdentityResolved()){
                 if(!Principal.isAuthenticated() && toState.name != 'register'){
-                    $state.go('login');
+                    $state.go('public');
                 }
             }
         });
@@ -121,11 +121,11 @@ angular.module('mycontractApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pas
                 }
             },
             resolve: {
-                authorize: ['Auth',
+                /*authorize: ['Auth',
                     function (Auth) {
                         return Auth.authorize();
                     }
-                ],
+                ],*/
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('global');
                 }]
@@ -141,7 +141,7 @@ angular.module('mycontractApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pas
             urlTemplate: 'i18n/{lang}/{part}.json'
         });
 
-        $translateProvider.preferredLanguage('zh-cn');
+        $translateProvider.preferredLanguage('en');
         $translateProvider.useCookieStorage();
         $translateProvider.useSanitizeValueStrategy('escaped');
 

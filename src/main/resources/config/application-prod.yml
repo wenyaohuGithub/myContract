@@ -10,11 +10,10 @@ spring:
     datasource:
         dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
         url:
-        databaseName: d2o6ms5r52i6uv
-        serverName: ec2-54-204-0-88.compute-1.amazonaws.com
-        username: xnineglgzlqbhk
-        password: 79695766438125fd94e8f65d2b478d52a2e1d1fabb0c95a6bc24e09ae8a9f134
-
+        databaseName: mycontract
+        serverName: localhost
+        username: postgres
+        password: Scala350!
     jpa:
         database-platform: org.hibernate.dialect.PostgreSQL82Dialect
         database: POSTGRESQL
